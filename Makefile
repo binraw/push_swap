@@ -3,8 +3,9 @@ PRINTFNAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 PRINTFDIR = ./printf
+LIBFTDIR = ./../libft
 
-SRCS =  lst_create.c
+SRCS = lst_create.c main.c swap_command.c lst_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -27,8 +28,8 @@ fclean: clean
 	@cd $(PRINTFDIR) && make fclean
 
 compil: 
-	cc lst_create.c ./ft_printf/*.c ./../libft/*.c
+	$(CC) $(CFLAGS) -o pushswap_test lst_create.c $(PRINTFDIR)/*.c $(LIBFTDIR)/*.c -I$(LIBFTDIR)
 
 re: fclean all compil
 
-.PHONY:                         all bonus clean fclean re compil
+.PHONY: all clean fclean re compil
