@@ -1,23 +1,24 @@
-NAME = pushswap.a
+NAME = pushswap
 PRINTFNAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3
 PRINTFDIR = ./printf
-LIBFTDIR = ./../libft
+LIBFTDIR = ./printf/libft
 
 SRCS = lst_create.c main.c swap_command.c lst_utils.c
 
+# Remplacez .c par .o pour obtenir les noms des fichiers objets
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
 makeprintf:
 	@make -C $(PRINTFDIR)
-	@cp $(PRINTFDIR)/$(PRINTFNAME) .
-	@mv $(PRINTFNAME) $(NAME)
+	@cp $(PRINTFDIR)/$(PRINTFNAME) $(NAME)
 
+# Ajoutez les dépendances pour les fichiers objets
 $(NAME): makeprintf $(OBJS)
-	@ar -r $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(PRINTFDIR) -lftprintf
 
 clean:
 	@rm -f $(OBJS)
@@ -28,8 +29,9 @@ fclean: clean
 	@cd $(PRINTFDIR) && make fclean
 
 compil: 
-	$(CC) $(CFLAGS) -o pushswap_test lst_create.c $(PRINTFDIR)/*.c $(LIBFTDIR)/*.c -I$(LIBFTDIR)
+	$(CC) $(CFLAGS) -o pushswap_test $(SRCS) $(PRINTFDIR)/*.c $(LIBFTDIR)/*.c -I$(LIBFTDIR) -I$(PRINTFDIR)
 
 re: fclean all compil
 
 .PHONY: all clean fclean re compil
+

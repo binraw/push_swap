@@ -6,13 +6,13 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/21 14:18:45 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2023/12/22 11:14:48 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_empty_t_list(t_list li)
+int	is_empty_t_list(t_list *li)
 {
 	if (li == NULL)
 		return (1);
@@ -45,17 +45,17 @@ int	is_empty_t_list(t_list li)
 
 
 
-// void printListe(t_list *liste)
-// {
-//     if (liste == NULL)
-//     {
-//        ft_print("NULL\n");
-//     }
-//     t_list *current = liste->first;
-//     while (current != NULL)
-//     {
-//         ft_print("%d -> ", current->content);
-//         current = current->next;
-//     }
-//     ft_print("NULL\n");
-// }
+void printListe(t_list *liste)
+{
+    if (liste == NULL)
+    {
+       printf("NULL\n");
+    }
+    t_list *current = liste;
+    while (current != NULL)
+    {
+        printf("%d -> ", current->content);
+        current = current->next;
+    }
+    printf("NULL\n");
+}

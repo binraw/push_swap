@@ -6,15 +6,15 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/21 14:15:00 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:39:57 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    Stack_init(char *value, int *num, int t)
+void    Stack_init(char *value, int *num)
 {
-    char *str;
+    char **str;
     int i;
     
     i = 0;
@@ -36,20 +36,23 @@ int main(int argc, char **argv)
     int i;
 
     i = 0;
-    if (argc < 2)
-        return (-1);
-    num = malloc(sizeof(int) * (argc - 1));
-    while(++i < argc)
-    {
-        if (ft_strlen(argv[i]) > 1)
-        {
-            Stack_init(argv[i], num, i - 1);
-            ft_lstadd_back(&stack_a, ft_lstnew(num));
-        }
-        else
-        {
-            num[i - 1] = atoi(argv[i]);
-            ft_lstadd_back(&stack_a, ft_lstnew(&num[i - 1]));
+    stack_a = NULL;
+    // if (!argc)
+    //     return (-1);
+    // if (argc < 2)
+        // return (-1);
+    printf("%s\n", "test");
+   num = malloc(sizeof(int) * (argc - 1));
+    while (++i < argc) {
+        if (ft_strlen(argv[i]) > 1) {
+            Stack_init(argv[i], num);
+            ft_lstadd_back(&stack_a, ft_lstnew(num[i - 1]));  // affiche seulement le premier rajouter une boucle
+        } 
+        else {
+            num[i] = atoi(argv[i]);
+            ft_lstadd_back(&stack_a, ft_lstnew(num[i]));
+         
         }
     }
+    printListe(stack_a);
 }
