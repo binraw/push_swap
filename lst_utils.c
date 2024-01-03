@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:41:34 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/22 13:21:06 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:12:43 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ t_list	*ft_lstlast(t_list *lst)
 	while (last->next != NULL)
 		last = last->next;
 	return (last);
+}
+
+int	ft_lstsize(t_list *head)
+{
+	size_t	i;
+	t_list	*tmp;
+
+	tmp = head;
+	i = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
 }

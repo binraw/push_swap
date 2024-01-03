@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/22 13:39:57 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/03 10:50:27 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,25 @@ int main(int argc, char **argv)
     t_list  *stack_a;
     int *num;
     int i;
+    int y;
 
     i = 0;
+    y = 0;
     stack_a = NULL;
     // if (!argc)
     //     return (-1);
     // if (argc < 2)
         // return (-1);
-    printf("%s\n", "test");
+    // printf("%s\n", "test");
    num = malloc(sizeof(int) * (argc - 1));
     while (++i < argc) {
         if (ft_strlen(argv[i]) > 1) {
             Stack_init(argv[i], num);
-            ft_lstadd_back(&stack_a, ft_lstnew(num[i - 1]));  // affiche seulement le premier rajouter une boucle
+            while (num[y])
+            {
+                ft_lstadd_back(&stack_a, ft_lstnew(num[y]));
+                y++;
+            }
         } 
         else {
             num[i] = atoi(argv[i]);
@@ -55,4 +61,5 @@ int main(int argc, char **argv)
         }
     }
     printListe(stack_a);
+    // ft_printf("%d\n",10);
 }

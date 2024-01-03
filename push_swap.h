@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/22 12:18:09 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:13:29 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
 int	is_empty_t_list(t_list *li);
 void printListe(t_list *liste);
-// char	**ft_split(char const *s, char c);
-// size_t	ft_strlen(const char *str);
-// int		ft_atoi(const char	*str);
+int	ft_lstsize(t_list *head);
+int	swap(t_list **stack);
 #endif
