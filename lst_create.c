@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2023/12/22 11:14:48 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/04 10:41:46 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ void printListe(t_list *liste)
 {
     if (liste == NULL)
     {
-       printf("NULL\n");
+       ft_printf("NULL\n");
     }
     t_list *current = liste;
     while (current != NULL)
     {
-        printf("%d -> ", current->content);
+        ft_printf("%d -> ", current->content);
         current = current->next;
     }
-    printf("NULL\n");
+    ft_printf("NULL\n");
 }

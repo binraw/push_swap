@@ -6,21 +6,21 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:15:15 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/03 14:30:17 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:16:56 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	swap(t_list **stack)
+void	swap(t_list **stack)
 {
 	t_list	*head;
 	t_list	*next;
 	int		tmp_val;
 
 
-	if (ft_lstsize(*stack) < 2)
-		return (-1);
+	// if (ft_lstsize(*stack) < 2)
+	// 	return (-1);
 	head = *stack;
 	next = head->next;
 	if (!head && !next)
@@ -28,22 +28,26 @@ int	swap(t_list **stack)
 	tmp_val = head->content;
 	head->content= next->content;
 	next->content = tmp_val;
-	return (0);
+	// return (0);
 }
 
-int sa_swap(t_list **stack_a)
+void sa_swap(t_list **stack_a)
 {
-    if (swap(stack_a) == -1)
-        return (-1);
-    ft_printf("sa");
-    return (0);
+    // if (swap(stack_a) == -1)
+    // {
+	// 	return (-1);
+	// }
+	swap(stack_a);
+    ft_printf("sa\n");
+    // return (0);
 }
-int sb_swap(t_list **stack_b)
+void sb_swap(t_list **stack_b)
 {
-    if (swap(stack_b) == -1)
-        return (-1);
-    ft_printf("sb");
-    return (0);
+    	// if (swap(stack_b) == -1)
+        // 	return (-1);
+	swap(stack_b);
+    ft_printf("sb\n");
+    // return (0);
 }
 
 int ss_swap(t_list **stack_a, t_list **stack_b)
@@ -52,17 +56,17 @@ int ss_swap(t_list **stack_a, t_list **stack_b)
         return (-1);
     swap(stack_a);
     swap(stack_b);
-    ft_printf("ss");
+    ft_printf("ss\n");
     return (0);
 }
-int	push(t_list **stack_to, t_list **stack_from)
+void	push(t_list **stack_to, t_list **stack_from)
 {
 	t_list	*tmp;
 	t_list	*head_to;
 	t_list	*head_from;
 
-	if (ft_lstsize(*stack_from) == 0)
-		return (-1);
+	// if (ft_lstsize(*stack_from) == 0)
+	// 	return (-1);
 	head_to = *stack_to;
 	head_from = *stack_from;
 	tmp = head_from;
@@ -81,72 +85,76 @@ int	push(t_list **stack_to, t_list **stack_from)
         tmp->prev = NULL;
 		*stack_to = tmp;
 	}
-	return (0);
+	// return (0);
 }
 
-int	pa_push(t_list **stack_a, t_list **stack_b)
+void	pa_push(t_list **stack_a, t_list **stack_b)
 {
-	if (push(stack_a, stack_b) == -1)
-		return (-1);
-	ft_printf("pa");
-	return (0);
+	// if (push(stack_a, stack_b) == -1)
+	// 	return (-1);
+	push(stack_a, stack_b);
+	ft_printf("pa\n");
+	// return (0);
 }
 
-int	pb_push(t_list **stack_a, t_list **stack_b)
+void	pb_push(t_list **stack_a, t_list **stack_b)
 {
-	if (push(stack_b, stack_a) == -1)
-		return (-1);
-	ft_printf("pb");
-	return (0);
+	// if (push(stack_b, stack_a) == -1)
+	// 	return (-1);
+	push(stack_b, stack_a);
+	ft_printf("pb\n");
+	// return (0);
 }
 
-int	rotate(t_list **stack)
+void	rotate(t_list **stack)
 {
 	t_list	*head;
 	t_list	*tail;
 
-	if (ft_lstsize(*stack) < 2)
-		return (-1);
+	// if (ft_lstsize(*stack) < 2)
+	// 	return (-1);
 	head = *stack;
 	tail = ft_lstlast(head);
 	*stack = head->next;
 	head->next = NULL;
 	tail->next = head;
     head->prev = tail;
-	return (0);
+	// return (0);
 }
-int ra_rotate(t_list **stack_a)
+void ra_rotate(t_list **stack_a)
 {
-    if (rotate(stack_a) == -1)
-        return (-1);
-    ft_printf("ra");
-    return (0);
+    // if (rotate(stack_a) == -1)
+	// 	return (-1);
+	rotate(stack_a);
+    ft_printf("ra\n");
+    // return (0);
 }
-int rb_rotate(t_list **stack_b)
+void rb_rotate(t_list **stack_b)
 {
-    if (rotate(stack_b) == -1)
-        return (-1);
-    ft_printf("rb");
-    return (0);
+    // if (rotate(stack_b) == -1)
+	// 	return (-1);
+	rotate(stack_b);
+    ft_printf("rb\n");
+    // return (0);
 }
 
-int rr_rotate(t_list **stack_a, t_list **stack_b)
+void rr_rotate(t_list **stack_a, t_list **stack_b)
 {
-    if (ft_lstsize(stack_a) < 2 || ft_lstsize(stack_b) < 2)
-        return (-1);
+    // if (ft_lstsize(*stack_a) < 2 || ft_lstsize(*stack_b) < 2)
+    //     return (-1);
     rotate(stack_a);
     rotate(stack_b);
-    ft_printf("rr");
-    return (0);
+    ft_printf("rr\n");
+    // return (0);
 }
-int	reverse_rotate(t_list **stack)
+void	reverse_rotate(t_list **stack)
 {
 	t_list	*head;
 	t_list	*tail;
     t_list  *next_to;
 
-	if (ft_lstsize(*stack) < 2)
-		return (-1);
+	// if (ft_lstsize(*stack) < 2)
+	// 	return (-1);
     head = *stack;
     tail = ft_lstlast(head);
     next_to = tail->prev;
@@ -155,23 +163,25 @@ int	reverse_rotate(t_list **stack)
     tail->prev = NULL;
     head->prev = tail;
     *stack = tail;
-	return (0);
+	// return (0);
 }
 
-int	rra_rotate(t_list **stack_a)
+void	rra_rotate(t_list **stack_a)
 {
-	if (reverse_rotate(stack_a) == -1)
-		return (-1);
-	ft_printf("rra");
-	return (0);
+	// if (reverse_rotate(stack_a) == -1)
+	// 	return (-1);
+	reverse_rotate(stack_a);
+	ft_printf("rra\n");
+	// return (0);
 }
 
-int	rrb_rotate(t_list **stack_b)
+void	rrb_rotate(t_list **stack_b)
 {
-	if (reverse_rotate(stack_b) == -1)
-		return (-1);
-	ft_printf("rrb");
-	return (0);
+	// if (reverse_rotate(stack_b) == -1)
+	// 	return (-1);
+	reverse_rotate(stack_b);
+	ft_printf("rrb\n");
+	// return (0);
 }
 
 int	rrr_rotate(t_list **stack_a, t_list **stack_b)
@@ -180,6 +190,6 @@ int	rrr_rotate(t_list **stack_a, t_list **stack_b)
 		return (-1);
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
-	ft_printf("rrr");
+	ft_printf("rrr\n");
 	return (0);
 }
