@@ -5,7 +5,7 @@ CFLAGS = -Wall -Werror -Wextra -g3
 PRINTFDIR = ./printf
 LIBFTDIR = ./printf/libft
 
-SRCS = lst_create.c main.c swap_command.c lst_utils.c threenum.c
+SRCS = lst_create.c main.c swap_command.c lst_utils.c threenum.c fivenum.c
 
 # Remplacez .c par .o pour obtenir les noms des fichiers objets
 OBJS = $(SRCS:.c=.o)

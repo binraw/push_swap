@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/04 15:32:56 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:28:08 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void    Stack_init(char *value, int *num)
 int main(int argc, char **argv)
 {
     t_list  *stack_a;
+    t_list  *stack_b;
      int *num;
     int i;
     int y;
@@ -39,6 +40,7 @@ int main(int argc, char **argv)
     i = 0;
     y = 0;
     stack_a = NULL;
+    stack_b = NULL;
     if (!argc)
         return (-1);
     if (argc < 2)
@@ -64,8 +66,10 @@ int main(int argc, char **argv)
         }
     }
     printListe(stack_a);
-    // if (ft_lstsize(*stack_a) == 3)
+    if (ft_lstsize(stack_a) == 3)
         sort_three_numbers(three_digit(stack_a), &stack_a);
+    if (ft_lstsize(stack_a) == 5)
+        five_digit(&stack_a, &stack_b);
     printListe(stack_a);
     // ft_printf("%d\n",10);
 }

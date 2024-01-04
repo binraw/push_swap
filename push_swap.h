@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/04 14:17:38 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/04 16:28:38 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	swap(t_list **stack);
 
 
 
-
+int	five_digit(t_list **stack_a, t_list **stack_b);
+void sort_five_num(t_list **stack_a);
 int three_digit(t_list *stack_a);
 int	sort_three_numbers(int num, t_list **stack_a);
 void sa_rra(t_list **stack_a);
