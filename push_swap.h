@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/04 16:28:38 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:15:34 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	swap(t_list **stack);
 
 
 
-
-
+int     biggest_finder(t_list *lst);
+int		minimal_finder(t_list *lst);
 
 
 int	five_digit(t_list **stack_a, t_list **stack_b);

@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 10:30:40 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/04 15:22:43 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/05 10:56:01 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int three_digit(t_list *stack_a)
 	lst = stack_a;
 	i = 0;
 
-	if (lst->content > lst->next->content && lst->content < lst->next->next->content)
+	if (lst->content > lst->next->content && lst->content < lst->next->next->content && lst->next->content < lst->next->next->content)
 		return (1);
 	else if (lst->content > lst->next->content && lst->content > lst->next->next->content && lst->next->content > lst->next->next->content)
 		return (2);
