@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/08 14:38:51 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/08 16:06:24 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int ss_swap(t_list **stack_a, t_list **stack_b);
 void sb_swap(t_list **stack_b);
 void sa_swap(t_list **stack_a);
 void	swap(t_list **stack);
+void sort_two_elemb(t_list **stack_b);
 
 int     check_is_biggest(t_list *lst, t_list *lst_b);
 int     check_is_minimal(t_list *lst, t_list *lst_b);
