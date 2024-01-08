@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/05 15:15:34 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:38:51 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 typedef struct s_list
 {
 	int			content;
+	int			index;
     struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;
@@ -54,14 +55,18 @@ void sb_swap(t_list **stack_b);
 void sa_swap(t_list **stack_a);
 void	swap(t_list **stack);
 
-
-
-
-
-
-
+int     check_is_biggest(t_list *lst, t_list *lst_b);
+int     check_is_minimal(t_list *lst, t_list *lst_b);
+int count_mediane(t_list *stack_a);
+int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index);
 int     biggest_finder(t_list *lst);
 int		minimal_finder(t_list *lst);
+int	ft_find_index(t_list *a, int nbr);
+
+
+
+
+
 
 
 int	five_digit(t_list **stack_a, t_list **stack_b);
