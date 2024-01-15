@@ -6,17 +6,131 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/08 16:07:00 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/15 12:41:54 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+void	transfer_num_ra(int index)
+{
+	int count;
+	int x;
+	
+	count = count_number_rotate(stack_a, stack_b, index);// il reste seulement les operations a faire dans b
+	while (index != 0)
+	{
+		ra_rotate(stack_a);
+		index--;
+	}
+	index = count;
+	while (count != 0)  //check si c'est le bon sens
+	{
+		if (stack_a->content > stack_b->next->content);
+			x = 1;
+		stack_b->next->content = stack_b->next->next->content;
+		count--;
+	}
+	count = index;
+	if (x == 0)
+	{
+		while (index != 0)
+		{
+			rrb_rotate(stack_b);
+			index--;
+		}
+		pb_push(stack_a,stack_b);
+		while (count != 0)
+		{
+			rb_rotate(stack_b); // je remet dans le bon ordre stack_b
+			count--;
+		}
+	}
+	count = index;
+	if (x == 1 && index != 1) // ici le != 1 c'est pour faire seulement un swap dans ce cas la 
+	{
+		while (index != 0)
+		{
+			rb_rotate(stack_b);
+			index--;
+		}
+		pb_push(stack_a,stack_b);
+		
+		while (count != 0)
+		{
+			rrb_rotate(stack_b); // je remet dans le bon ordre stack_b
+			count--;
+		}
+	}
+	if (x == 1 && index == 1) // ici quand il suffit de swap les deux premiers
+	{
+		pb_push(stack_a,stack_b);
+		sb_swap(stack_b);
+	}
+}
+void	transfer_num_rra(int index)
+{
+	int count;
+	int x;
+	
+	count = count_number_rotate(stack_a, stack_b, index);
+		while (index != 0)
+		{
+			rra_rotate(stack_a);
+			index--;
+		}
+		index = count;
+	  
+	while (count != 0)  //check si c'est le bon sens
+	{
+		if (stack_a->content > stack_b->next->content);
+			x = 1;
+		stack_b->next->content = stack_b->next->next->content;
+		count--;
+	}
+	count = index;
+	if (x == 0)
+	{
+		while (index != 0)
+		{
+			rrb_rotate(stack_b);
+			index--;
+		}
+		pb_push(stack_a,stack_b);
+		while (count != 0)
+		{
+			rb_rotate(stack_b); // je remet dans le bon ordre stack_b
+			count--;
+		}
+	}
+	count = index;
+	if (x == 1 && index != 1) // ici le != 1 c'est pour faire seulement un swap dans ce cas la 
+	{
+		while (index != 0)
+		{
+			rb_rotate(stack_b);
+			index--;
+		}
+		pb_push(stack_a,stack_b);
+		
+		while (count != 0)
+		{
+			rrb_rotate(stack_b); // je remet dans le bon ordre stack_b
+			count--;
+		}
+	}
+	if (x == 1 && index == 1) // ici quand il suffit de swap les deux premiers
+	{
+		pb_push(stack_a,stack_b);
+		sb_swap(stack_b);
+	}
+}
 int	big_digit(t_list **stack_a, t_list **stack_b)
 {
 	int y;
+	int count;
+	int x;
 	
-	
+	x = 0;
 	pb_push(stack_a,stack_b);
 	if (ft_lstsize(*stack_a) > 3)
 		pb_push(stack_a,stack_b); 
@@ -24,9 +138,14 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 // check les nombres de rotation
 	y = index_to_push(stack_a, stack_b);
 	if (y == 1)
-		pb_push(stack_a,stack_b);
+		pb_push(stack_a,stack_b); // je pousse si le chiffre est le plus grand direct
+	if (y < count_mediane(stack_a)) // ici c'est si le chiffre est en dessous de la mediane de stack_a
+		transfer_num_ra(y);
 	
-	
+	else // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
+	{
+		transfer_num_rra(y);
+	}
 	return (0);
 }
 

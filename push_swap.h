@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/08 16:06:24 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/15 09:41:42 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_list
 {
 	int			content;
 	int			index;
+	int			second_part;
     struct s_list	*prev;
 	struct s_list	*next;
 }	t_list;
@@ -63,6 +64,7 @@ int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index);
 int     biggest_finder(t_list *lst);
 int		minimal_finder(t_list *lst);
 int	ft_find_index(t_list *a, int nbr);
+int     check_is_rra(t_list *lst);
 
 
 
