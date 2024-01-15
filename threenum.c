@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 10:30:40 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/08 16:06:05 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:14:06 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void sa_rra(t_list **stack_a)
     rra_rotate(stack_a);
     
 }
-void sort_two_elemb(t_list **stack_b)
+void sort_two_elemb(t_list *stack_b)
 {
-	if (stack_b->content > stack_b->next-content)
-		sb_swap(stack_b);
+	if (stack_b->content < stack_b->next->content)
+		sb_swap(&stack_b);
 }

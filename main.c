@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/05 12:22:29 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:08:05 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int main(int argc, char **argv)
         sort_three_numbers(three_digit(stack_a), &stack_a);
     if (ft_lstsize(stack_a) == 5 || ft_lstsize(stack_a) == 4)
         five_digit(&stack_a, &stack_b);
+    if (ft_lstsize(stack_a) > 5)
+        big_digit(&stack_a, &stack_b);
     printListe(stack_a);
     // ft_printf("%d\n",10);
 }

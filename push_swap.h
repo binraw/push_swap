@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/15 09:41:42 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/15 13:50:02 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int ss_swap(t_list **stack_a, t_list **stack_b);
 void sb_swap(t_list **stack_b);
 void sa_swap(t_list **stack_a);
 void	swap(t_list **stack);
-void sort_two_elemb(t_list **stack_b);
+void sort_two_elemb(t_list *stack_b);
 
 int     check_is_biggest(t_list *lst, t_list *lst_b);
 int     check_is_minimal(t_list *lst, t_list *lst_b);
@@ -70,7 +70,8 @@ int     check_is_rra(t_list *lst);
 
 
 
-
+int	big_digit(t_list **stack_a, t_list **stack_b);
+int index_to_push(t_list *stack_a, t_list *stack_b);
 
 int	five_digit(t_list **stack_a, t_list **stack_b);
 void sort_five_num(t_list **stack_a);
