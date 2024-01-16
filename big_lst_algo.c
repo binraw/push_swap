@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 13:00:03 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:55:51 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,14 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 	
 	x = 0;
 	pb_push(stack_a,stack_b);
+	printListe(*stack_a);
 	if (ft_lstsize(*stack_a) > 3)
+	{
 		pb_push(stack_a,stack_b); 
+		printListe(*stack_a);
+	}
 	sort_two_elemb(*stack_b);
-// check les nombres de rotation
+// Vers ici des problemes !!!
 
 while (ft_lstsize(*stack_a) > 3)
 {
@@ -156,7 +160,9 @@ while (ft_lstsize(*stack_a) > 3)
 		transfer_num_ra(*stack_a, *stack_b, y);
 	else // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
 	{
+		printListe(*stack_a);
 		transfer_num_rra(*stack_a, *stack_b, y);
+		 printListe(*stack_a);
 	}
 	
 }

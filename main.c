@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 15:28:31 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:43:37 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,10 @@ void    Stack_init(t_list **stack_a,char *value)
     printf("%s\n", value);
      while (str[i])
     {
-        
-         ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(str[i])));
-         
+        ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(str[i])));
         i++;
     }
-   
-
-    // free(str);
+    free(str);
 }
 
 int main(int argc, char **argv)
@@ -57,24 +53,11 @@ int main(int argc, char **argv)
     while (++i < argc) {
         if (ft_strlen(argv[i]) > 1 && i == 1) 
         {
-            // Stack_init(argv[i], num);
             Stack_init(&stack_a,argv[i]);
-            // while (num[y])
-            // {
-            //     if (!ft_lstcontains(stack_a, num[y]) )
-            //         ft_lstadd_back(&stack_a, ft_lstnew(num[y]));
-            //     //  printf("%d\n", num[y]);
-            //     y++;
-            // }
         } 
         else
-         {
-            // ft_printf("%d\n", i);
-            // num[i] = atoi(argv[i]);
-            
+        {
             ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(argv[i])));
-            
-         
         }
     }
     printListe(stack_a);
