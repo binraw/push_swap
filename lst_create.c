@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/04 10:41:46 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:44:38 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,3 +59,14 @@ void printListe(t_list *liste)
     }
     ft_printf("NULL\n");
 }
+int ft_lstcontains(t_list *list, int value)
+{
+    while (list != NULL)
+    {
+        if (list->content == value)
+            return 1; // La valeur est présente dans la liste
+        list = list->next;
+    }
+    return 0; // La valeur n'est pas présente dans la liste
+}
+

@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/15 15:42:59 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/16 13:00:03 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 		pb_push(stack_a,stack_b); 
 	sort_two_elemb(*stack_b);
 // check les nombres de rotation
-int i = 3;
-while (i != 0)
+
+while (ft_lstsize(*stack_a) > 3)
 {
 	y = index_to_push(*stack_a, *stack_b);
 	if (y == 1)
@@ -158,7 +158,7 @@ while (i != 0)
 	{
 		transfer_num_rra(*stack_a, *stack_b, y);
 	}
-	i--;
+	
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
 
