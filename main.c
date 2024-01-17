@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 11:32:50 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:47:43 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ int main(int argc, char **argv)
     // pb_push(&stack_a,&stack_b);
     // sb_swap(&stack_b);
     printListe(stack_a);
-    // printListe(stack_b);
+    printListe(stack_b);
     // ft_printf("%d\n",10);
 }
