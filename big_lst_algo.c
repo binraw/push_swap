@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 15:55:51 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:40:05 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@ void	transfer_num_ra(t_list *stack_a, t_list *stack_b, int index)
 {
 	int count;
 	int x;
+	t_list *stack_from;
+
+	stack_from = ft_lstduplicate(stack_b);
 	
 	count = count_number_rotate(stack_a, stack_b, index);// il reste seulement les operations a faire dans b
 	while (index >= 0)
@@ -25,9 +28,9 @@ void	transfer_num_ra(t_list *stack_a, t_list *stack_b, int index)
 	index = count;
 	while (count != 0)  //check si c'est le bon sens
 	{
-		if (stack_a->content > stack_b->next->content)
+		if (stack_a->content > stack_from->next->content)
 			x = 1;
-		stack_b->next->content = stack_b->next->next->content;
+		stack_from->next->content = stack_from->next->next->content;
 		count--;
 	}
 	count = index;
@@ -72,6 +75,9 @@ void	transfer_num_rra(t_list *stack_a, t_list *stack_b, int index)
 	int count;
 	int x;
 	int pos;
+	t_list *stack_from;
+
+	stack_from = ft_lstduplicate(stack_b);
 	
 
 	pos = ft_lstsize(stack_a);   //possiblement la solution pour savoir combien de fois il reste a rra 
@@ -91,14 +97,12 @@ void	transfer_num_rra(t_list *stack_a, t_list *stack_b, int index)
 	}
 	while (count >= 0)  //check si c'est le bon sens
 	{
-		if (stack_a->content > stack_b->next->content)
+		if (stack_a->content > stack_from->next->content)
 			x = 1;
-		stack_b->next->content = stack_b->next->next->content;
-		// ft_printf("%d", count);
+		stack_from->next->content = stack_from->next->next->content;
 		count--;
 	}
 	count = index;
-	// ft_printf("%d", count);
 	if (x == 0)
 	{
 		while (index != 0)
@@ -132,7 +136,7 @@ void	transfer_num_rra(t_list *stack_a, t_list *stack_b, int index)
 	if (x == 1 && index == 1) // ici quand il suffit de swap les deux premiers
 	{
 		pb_push(&stack_a, &stack_b);
-		sb_swap(&stack_b);
+		printListe(stack_b);
 	}
 }
 int	big_digit(t_list **stack_a, t_list **stack_b)
@@ -143,12 +147,15 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 	x = 0;
 	pb_push(stack_a,stack_b);
 	printListe(*stack_a);
+	// printListe(*stack_a);
 	if (ft_lstsize(*stack_a) > 3)
 	{
 		pb_push(stack_a,stack_b); 
+		
+		printListe(*stack_b);
 		printListe(*stack_a);
 	}
-	sort_two_elemb(*stack_b);
+	// sort_two_elemb(*stack_b);
 // Vers ici des problemes !!!
 
 while (ft_lstsize(*stack_a) > 3)
@@ -156,18 +163,17 @@ while (ft_lstsize(*stack_a) > 3)
 	y = index_to_push(*stack_a, *stack_b);
 	if (y == 1)
 		pb_push(stack_a,stack_b); // je pousse si le chiffre est le plus grand direct
-	if (y <= count_mediane(*stack_a)) // ici c'est si le chiffre est en dessous de la mediane de stack_a
-		transfer_num_ra(*stack_a, *stack_b, y);
+	 if (y <= count_mediane(*stack_a)) // ici c'est si le chiffre est en dessous de la mediane de stack_a
+		 transfer_num_ra(*stack_a, *stack_b, y);
 	else // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
 	{
-		printListe(*stack_a);
 		transfer_num_rra(*stack_a, *stack_b, y);
-		 printListe(*stack_a);
+		printListe(*stack_b);
 	}
 	
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
-
+	// printListe(*stack_b);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 14:44:38 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:57:27 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,25 @@ int	is_empty_t_list(t_list *li)
 // }
 
 
+t_list *ft_lstduplicate(const t_list *original)
+ {
+    if (!original) 
+        return NULL;
+    
 
+    t_list *copy = ft_lstnew(original->content);
+    t_list *original_ptr = original->next;
+    t_list *copy_ptr = copy;
+
+    while (original_ptr) 
+    {
+        copy_ptr->next = ft_lstnew(original_ptr->content);
+        copy_ptr = copy_ptr->next;
+        original_ptr = original_ptr->next;
+    }
+
+    return copy;
+}
 
 
 void printListe(t_list *liste)

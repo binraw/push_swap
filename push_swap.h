@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 14:44:50 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:54:48 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		minimal_finder(t_list *lst);
 int	ft_find_index(t_list *a, int nbr);
 int     check_is_rra(t_list *lst);
 
-
+t_list *ft_lstduplicate(const t_list *original);
 
 
 

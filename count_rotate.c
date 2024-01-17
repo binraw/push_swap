@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:12:33 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/15 15:09:20 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:57:17 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,19 @@ int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index)
     int num;
     int i;
     int x;
+    t_list *stack_to;
+    t_list *stack_from;
+
+    stack_to = ft_lstduplicate(stack_a);
+    stack_from = ft_lstduplicate(stack_b);
 
     i = 0;
     x = 0;
     while (i <= index)
     {
-        num = stack_a->content;
-        stack_a->index = i;
-        stack_a->content = stack_a->next->content;
+        num = stack_to->content;
+        stack_to->index = i;
+        stack_to->content = stack_to->next->content;
         i++;
     }    
     // ft_printf("%d\n", num);
@@ -45,31 +50,30 @@ int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index)
     //     i = 1;
     // else
     // {
-        if (i > count_mediane(stack_a))
+        if (i > count_mediane(stack_to))
         {
-            i = (ft_lstsize(stack_a) - i) + 1;
-            stack_a->second_part = 1;
+            i = (ft_lstsize(stack_to) - i) + 1;
+            stack_to->second_part = 1;
         }
-        if (num > stack_b->content)
+        if (num > stack_from->content)
             i = i + 1;
         // if (num < stack_b->content && (num < ft_lstadd_back(stack_b)->content))
         //     i = i + 2;
         else 
         {
             x = i;
-            while (num < stack_b->content)
+            while (num < stack_from->content)
             {
-                stack_b->content = stack_b->next->content;
+                stack_from->content = stack_from->next->content;
                 i++;
             }
-            while (num > ft_lstlast(stack_b)->content)
+            while (num > ft_lstlast(stack_from)->content)
             {
-                ft_lstlast(stack_b)->content = stack_b->prev->content;
+                ft_lstlast(stack_from)->content = stack_from->prev->content;
                 x++;
             }
             if (x < i)
                 i = x;
-                
                 
         }
     // }

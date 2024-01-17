@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/16 15:43:37 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:32:50 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ int main(int argc, char **argv)
         five_digit(&stack_a, &stack_b);
     if (ft_lstsize(stack_a) > 5)
         big_digit(&stack_a, &stack_b);
+
+    // sa_swap(&stack_a);
+    // printListe(stack_a);
+    // pb_push(&stack_a,&stack_b);
+    // pb_push(&stack_a,&stack_b);
+    // sb_swap(&stack_b);
     printListe(stack_a);
+    // printListe(stack_b);
     // ft_printf("%d\n",10);
 }
