@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 10:54:48 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:27:18 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int     check_is_rra(t_list *lst);
 
 t_list *ft_lstduplicate(const t_list *original);
 
-
+void	sorting_second_stack(t_list **stack_b);
 
 int	big_digit(t_list **stack_a, t_list **stack_b);
 int index_to_push(t_list *stack_a, t_list *stack_b);
