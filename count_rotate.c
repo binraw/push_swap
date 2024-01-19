@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:12:33 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 13:07:18 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:12:36 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index)
 
     i = 0;
     x = 0;
+    ft_printf("la valeur de index : %d\n", index);
     while (i <= index)
     {
         num = stack_to->content;
         stack_to->index = i;
         stack_to->content = stack_to->next->content;
         i++;
+        ft_printf("la valeur de index : %d\n", i);
     }    
     // ft_printf("%d\n", num);
     // if (check_is_minimal(stack_a,stack_b) == 1 && index == 0)

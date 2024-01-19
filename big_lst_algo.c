@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 14:43:59 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/19 11:31:59 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,6 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 	
 	printf("%d\n", index);
 	count = count_number_rotate(*stack_a, *stack_b, index);
-		// while (index != 0)
-		// {
-		// 	rra_rotate(stack_a);
-		// 	index = pos - index;
-		// 	printf("%d\n", index);
-		// }
-		printf("%d\n", count);
 		index = count;
 	if ((*stack_a)->content > ft_lstlast(*stack_b)->content)
 	{
@@ -108,21 +101,6 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		count--;
 	}
 	count = index;
-	// if (x == 0)
-	// {
-	// 	while (index != 0)
-	// 	{
-	// 		rrb_rotate(stack_b);
-	// 		index--;
-	// 	}
-	// 	pb_push(stack_a, stack_b);
-	// 	while (count != 0)
-	// 	{
-	// 		rb_rotate(stack_b); // je remet dans le bon ordre stack_b
-	// 		count--;
-	// 	}
-	// }
-	// count = index;
 	if (x == 1 && index != 1) // ici le != 1 c'est pour faire seulement un swap dans ce cas la 
 	{
 		while (index != 0)
@@ -159,7 +137,7 @@ void	sorting_second_stack(t_list **stack_b)
 		i++;
 		stack_tmp->next->content = stack_tmp->next->next->content; 
 	}
-	printf("la valeur de i :%d\n", i);
+	ft_printf("la valeur de i dans storting :%d\n", i);
 	if (i <= count_mediane(stack_tmp))
 	{
 		while (i != 0)
@@ -180,36 +158,34 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 	printListe(*stack_a);
 	if (ft_lstsize(*stack_a) > 3)
 	{
-		pb_push(stack_a,stack_b); 
+		pb_push(stack_a,stack_b);
 		
 		printListe(*stack_b);
 		printListe(*stack_a);
 	}
-	// sort_two_elemb(*stack_b);
+	sort_two_elemb(*stack_b);
 
 
 while (ft_lstsize(*stack_a) > 3)
 {
 	y = index_to_push(*stack_a, *stack_b);
-	if (y == 1)
+	if (y == 1 || y == 0)
 		pb_push(stack_a,stack_b); // je pousse si le chiffre est le plus grand direct
 	 if (y <= count_mediane(*stack_a))  // ici c'est si le chiffre est en dessous de la mediane de stack_a
 	 {
 		transfer_num_ra(stack_a, stack_b, y);
-		sorting_second_stack(stack_b);
+		// sorting_second_stack(stack_b);
 	 } 
 		 
 	else // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
 	{
 		transfer_num_rra(stack_a, stack_b, y);
-		printListe(*stack_b);
 		sorting_second_stack(stack_b);
 		printListe(*stack_b);
 	}
 	
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
-	// printListe(*stack_b);
 	return (0);
 }
 
@@ -221,7 +197,7 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 
 	i = 0;
 	y = 0;
-	
+	ft_printf("valeur de la taille de stack a : %d\n", ft_lstsize(stack_a));
 	while (i <= ft_lstsize(stack_a))
 	{
 		if (count_number_rotate(stack_a, stack_b, i) < count || i == 0)
@@ -229,9 +205,10 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 		count = count_number_rotate(stack_a, stack_b, i);
 		y = i;  // nombre de l'index a push
 		}
-		if (count == 1)
+		if (count == 1 || count == 0)
 			break ;
 		i++;
 	}
+	ft_printf("passage dans index to push");
 	return (y);
 }
