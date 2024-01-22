@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:15:15 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 10:00:56 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:52:12 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,25 @@ void	rotate(t_list **stack)
 {
 	t_list	*head;
 	t_list	*tail;
+	t_list	*next_to;
 
 	// if (ft_lstsize(*stack) < 2)
 	// 	return (-1);
 	head = *stack;
 	tail = ft_lstlast(head);
+	next_to = tail->prev;
+	tail->next = head;
 	*stack = head->next;
 	head->next = NULL;
-	tail->next = head;
+	
+	tail->prev = next_to;
     head->prev = tail;
+	
 	// return (0);
 }
+
+
+
 void ra_rotate(t_list **stack_a)
 {
     // if (rotate(stack_a) == -1)

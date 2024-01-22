@@ -6,11 +6,12 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/19 11:31:59 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:40:31 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
@@ -21,61 +22,29 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 
 	stack_from = ft_lstduplicate(*stack_b);
 	
-	count = count_number_rotate(*stack_a, *stack_b, index);// il reste seulement les operations a faire dans b
+	// il reste seulement les operations a faire dans b
 	while (index >= 0)
 	{
 		ra_rotate(stack_a);
+		printListe(*stack_a);
 		index--;
 	}
-	index = count;
-	while (count != 0)  //check si c'est le bon sens
+	count = count_number_rota(stack_b, (*stack_a)->content);
+	ft_printf("valeur de count : %d\n", count);
+	while (count > 0)
 	{
-		if ((*stack_a)->content > stack_from->next->content)
-			x = 1;
-		stack_from->next->content = stack_from->next->next->content;
+		rb_rotate(stack_b);
+		printListe(*stack_b);
 		count--;
 	}
-	count = index;
-	if (x == 0)
-	{
-		while (index != 0)
-		{
-			rrb_rotate(stack_b);
-			index--;
-		}
-		pb_push(stack_a, stack_b);
-		while (count != 0)
-		{
-			rb_rotate(stack_b); // je remet dans le bon ordre stack_b
-			count--;
-		}
-	}
-	count = index;
-	if (x == 1 && index != 1) // ici le != 1 c'est pour faire seulement un swap dans ce cas la 
-	{
-		while (index != 0)
-		{
-			rb_rotate(stack_b);
-			index--;
-		}
-		pb_push(stack_a, stack_b);
-		
-		while (count != 0)
-		{
-			rrb_rotate(stack_b); // je remet dans le bon ordre stack_b
-			count--;
-		}
-	}
-	if (x == 1 && index == 1) // ici quand il suffit de swap les deux premiers (enfaite pas forcement !!)
-	{
-		pb_push(stack_a, stack_b);
-		// sb_swap(&stack_b);
-	}
+	pb_push(stack_a, stack_b);
+	printListe(*stack_b);
+	
+
 }
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
-	int x;
 	int pos;
 	t_list *stack_from;
 
@@ -84,70 +53,28 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 
 	pos = ft_lstsize(*stack_a);   //possiblement la solution pour savoir combien de fois il reste a rra 
 	
-	printf("%d\n", index);
-	count = count_number_rotate(*stack_a, *stack_b, index);
-		index = count;
-	if ((*stack_a)->content > ft_lstlast(*stack_b)->content)
+	
+	while (index >= 0)
 	{
-		pb_push(stack_a, stack_b);
+		rra_rotate(stack_a);
+		printListe(*stack_a);
+		index--;
+	}
+	count = count_number_rota(stack_b, (*stack_a)->content);
+	ft_printf("valeur de count : %d\n", count);
+	while (count > 0)
+	{
 		rb_rotate(stack_b);
-		return ;
-	}
-	while (count >= 0)  //check si c'est le bon sens
-	{
-		if ((*stack_a)->content > stack_from->next->content)
-			x = 1;
-		stack_from->next->content = stack_from->next->next->content;
 		count--;
-	}
-	count = index;
-	if (x == 1 && index != 1) // ici le != 1 c'est pour faire seulement un swap dans ce cas la 
-	{
-		while (index != 0)
-		{
-			rb_rotate(stack_b);
-			index--;
-		}
-		pb_push(stack_a, stack_b);
-		
-		while (count != 0)
-		{
-			rrb_rotate(stack_b); // je remet dans le bon ordre stack_b
-			count--;
-		}
-	}
-	if (x == 1 && index == 1) // ici quand il suffit de swap les deux premiers
-	{
-		pb_push(stack_a, stack_b);
 		printListe(*stack_b);
 	}
+	pb_push(stack_a, stack_b);
+	printListe(*stack_b);
+	
+
 }
 
-void	sorting_second_stack(t_list **stack_b)
-{
-	t_list *stack_tmp;
-	int i;
-	
-	i = 0;
-	
-	stack_tmp = ft_lstduplicate(*stack_b);
 
-	while (stack_tmp->content > stack_tmp->next->content)
-	{
-		i++;
-		stack_tmp->next->content = stack_tmp->next->next->content; 
-	}
-	ft_printf("la valeur de i dans storting :%d\n", i);
-	if (i <= count_mediane(stack_tmp))
-	{
-		while (i != 0)
-		{
-			rb_rotate(stack_b);
-			i--;
-		}
-	}
-	
-}
 int	big_digit(t_list **stack_a, t_list **stack_b)
 {
 	int y;
@@ -169,46 +96,72 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 while (ft_lstsize(*stack_a) > 3)
 {
 	y = index_to_push(*stack_a, *stack_b);
-	if (y == 1 || y == 0)
-		pb_push(stack_a,stack_b); // je pousse si le chiffre est le plus grand direct
 	 if (y <= count_mediane(*stack_a))  // ici c'est si le chiffre est en dessous de la mediane de stack_a
 	 {
 		transfer_num_ra(stack_a, stack_b, y);
 		// sorting_second_stack(stack_b);
+		printListe(*stack_b);
 	 } 
 		 
 	else // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
 	{
 		transfer_num_rra(stack_a, stack_b, y);
-		sorting_second_stack(stack_b);
+		// sorting_second_stack(stack_b);
 		printListe(*stack_b);
 	}
 	
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
+ x = ft_lstsize(*stack_b);
+ while (x != 0)
+ {
+	big_digit_to_a(stack_a, stack_b);
+	x--;
+ }
 	return (0);
 }
 
 int index_to_push(t_list *stack_a, t_list *stack_b)
 {
 	int i;
-	int y;
+	int x;
 	int count;
-
+	t_list *tmp;
+	
+	tmp = ft_lstduplicate(stack_a);
 	i = 0;
-	y = 0;
-	ft_printf("valeur de la taille de stack a : %d\n", ft_lstsize(stack_a));
+	x = 0;
 	while (i <= ft_lstsize(stack_a))
 	{
-		if (count_number_rotate(stack_a, stack_b, i) < count || i == 0)
+		if (count_number_rota(&stack_b, tmp->content) < count || i == 0)
 		{
-		count = count_number_rotate(stack_a, stack_b, i);
-		y = i;  // nombre de l'index a push
+		count = count_number_rota(&stack_b, tmp->content);
+		x = i;
 		}
-		if (count == 1 || count == 0)
+		if (count == 1)
 			break ;
+		tmp->content = tmp->next->content;
 		i++;
 	}
-	ft_printf("passage dans index to push");
-	return (y);
+	return (x);
+}
+
+int big_digit_to_a(t_list **stack_a, t_list **stack_b)
+{
+	int count;
+
+	t_list *tmp;
+	
+	tmp = ft_lstduplicate(*stack_b);
+
+	count = count_number_rota_a(stack_a, tmp->content);
+
+	while (count >= 0)
+	{
+		ra_rotate(stack_a);
+		count--;
+	}
+	pa_push(stack_a, stack_b);
+
+	return (0);
 }

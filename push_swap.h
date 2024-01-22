@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 14:27:18 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:40:18 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void sort_two_elemb(t_list *stack_b);
 int     check_is_biggest(t_list *lst, t_list *lst_b);
 int     check_is_minimal(t_list *lst, t_list *lst_b);
 int count_mediane(t_list *stack_a);
-int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index);
+// int     count_number_rotate(t_list *stack_a, t_list *stack_b, int index);
 int     biggest_finder(t_list *lst);
 int		minimal_finder(t_list *lst);
 int	ft_find_index(t_list *a, int nbr);
@@ -80,4 +80,12 @@ int three_digit(t_list *stack_a);
 int	sort_three_numbers(int num, t_list **stack_a);
 void sa_rra(t_list **stack_a);
 void rra_sa(t_list **stack_a);
+
+
+int ft_find_place_b(t_list *stack_b, int nbr_push);
+int ft_find_place_a(t_list *stack_a, int nbr_push);
+// int ft_rotate_rrarrb(t_list *stack_a, t_list *stack_b, int c);
+int count_number_rota(t_list **stack_b, int nbr);
+int count_number_rota_a(t_list **stack_a, int nbr);
+int big_digit_to_a(t_list **stack_a, t_list **stack_b);
 #endif
