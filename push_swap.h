@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/22 16:40:18 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:03:36 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,11 @@ int ft_find_place_a(t_list *stack_a, int nbr_push);
 int count_number_rota(t_list **stack_b, int nbr);
 int count_number_rota_a(t_list **stack_a, int nbr);
 int big_digit_to_a(t_list **stack_a, t_list **stack_b);
+
+int calculate_ra(t_list **stack_a, t_list **stack_b, int count);
+int calculate_rra(t_list **stack_a, t_list **stack_b, int count);
+int push_after_ra(t_list **stack_a, t_list **stack_b, int count);
+int push_after_rra(t_list **stack_a, t_list **stack_b, int count);
+int orga_lst(t_list **stack_a);
+int orga_lst_rra(t_list **stack_a);
 #endif

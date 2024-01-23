@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/22 16:40:31 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:03:25 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,11 +112,17 @@ while (ft_lstsize(*stack_a) > 3)
 	
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
- x = ft_lstsize(*stack_b);
- while (x != 0)
+  
+ while (ft_lstsize(*stack_b) > 0 && x < 100)
  {
-	big_digit_to_a(stack_a, stack_b);
-	x--;
+	 big_digit_to_a(stack_a, stack_b);
+	 x++;
+	 
+	
+ }
+ if (ft_find_index(*stack_a,minimal_finder(*stack_a)) <= count_mediane(*stack_a))
+ {
+	orga_lst(stack_a);
  }
 	return (0);
 }
@@ -149,19 +155,128 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 {
 	int count;
+	int x;
 
 	t_list *tmp;
+	t_list *dupli_a;
 	
 	tmp = ft_lstduplicate(*stack_b);
-
+	dupli_a = ft_lstduplicate(*stack_a);
+	x = 0;
 	count = count_number_rota_a(stack_a, tmp->content);
 
-	while (count >= 0)
+	// ft_printf("Valeur de count final : %d\n", count);
+
+	// choisir quel action realiser 
+	printListe(*stack_a);
+	printListe(*stack_b);
+	if (tmp->content > biggest_finder(*stack_a))
 	{
+		pa_push(stack_a, stack_b);
 		ra_rotate(stack_a);
-		count--;
 	}
-	pa_push(stack_a, stack_b);
+	else if (tmp->content < dupli_a->content &&  tmp->content > ft_lstlast(dupli_a)->content)
+	{
+		pa_push(stack_a, stack_b);
+	}
+	else if (tmp->content < ft_lstlast(dupli_a)->content && tmp->content > minimal_finder(*stack_a))
+	{
+		rra_rotate(stack_a);
+		return (1);
+	}
+	else if (tmp->content < dupli_a->content && dupli_a->content == minimal_finder(*stack_a))
+	{
+		pa_push(stack_a, stack_b);
+	}
+	else 
+	{
+		orga_lst(stack_a);
+	}
+	// else if ()
+	
+	// if (calculate_ra(stack_a, stack_b, count))
+	// 	push_after_ra(stack_a, stack_b, count);
+	// else if (calculate_rra(stack_a, stack_b, count))
+	// 	push_after_rra(stack_a, stack_b, count);
 
 	return (0);
 }
+
+int orga_lst(t_list **stack_a)
+{
+	while ((*stack_a)->content != minimal_finder(*stack_a))
+	{
+		ra_rotate(stack_a);
+	}
+	return (0);
+}
+int orga_lst_rra(t_list **stack_a)
+{
+	while ((*stack_a)->content != minimal_finder(*stack_a))
+	{
+		rra_rotate(stack_a);
+	}
+	return (0);
+}
+
+// int calculate_ra(t_list **stack_a, t_list **stack_b, int count)
+// {
+// 	t_list *tmp;
+// 	t_list *tmp_two;
+
+// 	tmp = ft_lstduplicate(*stack_a);
+// 	tmp_two = ft_lstduplicate(*stack_b);
+
+// 	while (count >= 0)
+// 	{
+// 		ra_rotate(&tmp);
+// 		count--;
+// 	}
+// 	if (tmp_two->content < tmp->content && tmp_two->content < ft_lstlast(tmp)->content)
+// 	{
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+// int calculate_rra(t_list **stack_a, t_list **stack_b, int count)
+// {
+// 	t_list *tmp;
+// 	t_list *tmp_two;
+
+// 	tmp = ft_lstduplicate(*stack_a);
+// 	tmp_two = ft_lstduplicate(*stack_b);
+
+// 	while (count >= 0)
+// 	{
+// 		rra_rotate(&tmp);
+// 		count--;
+// 	}
+// 	if (tmp_two->content < tmp->content && tmp_two->content < ft_lstlast(tmp)->content)
+// 	{
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+// int push_after_ra(t_list **stack_a, t_list **stack_b, int count)
+// {
+// 	while (count >= 0)
+// 	{
+// 		ra_rotate(stack_a);
+// 		count--;
+// 	}
+// 	pa_push(stack_a, stack_b);
+// 	return (0);
+// }
+
+// int push_after_rra(t_list **stack_a, t_list **stack_b, int count)
+// {
+// 	while (count >= 0)
+// 	{
+// 		rra_rotate(stack_a);
+// 		count--;
+// 	}
+// 	pa_push(stack_a, stack_b);
+// 	return (0);
+// }
