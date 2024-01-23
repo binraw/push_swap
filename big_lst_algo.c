@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/23 15:03:25 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:07:23 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 int	big_digit(t_list **stack_a, t_list **stack_b)
 {
 	int y;
-	int x;
+	// int x;
 	
-	x = 0;
+	// x = 0;
 	pb_push(stack_a,stack_b);
 	printListe(*stack_a);
 	if (ft_lstsize(*stack_a) > 3)
@@ -113,17 +113,20 @@ while (ft_lstsize(*stack_a) > 3)
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
   
- while (ft_lstsize(*stack_b) > 0 && x < 100)
+ while (ft_lstsize(*stack_b) > 1 )
  {
 	 big_digit_to_a(stack_a, stack_b);
-	 x++;
-	 
 	
  }
- if (ft_find_index(*stack_a,minimal_finder(*stack_a)) <= count_mediane(*stack_a))
- {
+//  if (ft_find_index(*stack_a,minimal_finder(*stack_a)) <= count_mediane(*stack_a))
+//  {
 	orga_lst(stack_a);
- }
+ last_num_stack(stack_a, stack_b, (*stack_b)->content);
+//  }
+//  else 
+//  {
+// 	orga_lst_rra(stack_a);
+//  }
 	return (0);
 }
 
@@ -188,95 +191,67 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 	{
 		pa_push(stack_a, stack_b);
 	}
-	else 
+	else if (ft_lstsize(*stack_b) == 1 && tmp->content < minimal_finder(*stack_a))
 	{
 		orga_lst(stack_a);
+		pa_push(stack_a, stack_b);
 	}
-	// else if ()
-	
-	// if (calculate_ra(stack_a, stack_b, count))
-	// 	push_after_ra(stack_a, stack_b, count);
-	// else if (calculate_rra(stack_a, stack_b, count))
-	// 	push_after_rra(stack_a, stack_b, count);
+	else if (tmp->content > dupli_a->content && tmp->content < dupli_a->next->content)
+	{
+		pa_push(stack_a, stack_b);
+		sa_swap(stack_a);
+	}
+	else 
+	{
+			orga_lst(stack_a);
+		
+	}
+
 
 	return (0);
 }
 
 int orga_lst(t_list **stack_a)
 {
+
 	while ((*stack_a)->content != minimal_finder(*stack_a))
 	{
 		ra_rotate(stack_a);
 	}
+	
+	
+	
 	return (0);
 }
 int orga_lst_rra(t_list **stack_a)
 {
-	while ((*stack_a)->content != minimal_finder(*stack_a))
+	while (ft_lstlast(*stack_a)->content != minimal_finder(*stack_a))
 	{
 		rra_rotate(stack_a);
 	}
 	return (0);
 }
-
-// int calculate_ra(t_list **stack_a, t_list **stack_b, int count)
+// cette idee fais beug tout le PC 
+// int last_num_stack(t_list **stack_a, t_list **stack_b, int content)
 // {
 // 	t_list *tmp;
-// 	t_list *tmp_two;
+// 	t_list *dupli_a;
+	
+// 	tmp = ft_lstduplicate(*stack_b);
+// 	dupli_a = ft_lstduplicate(*stack_a);
 
-// 	tmp = ft_lstduplicate(*stack_a);
-// 	tmp_two = ft_lstduplicate(*stack_b);
-
-// 	while (count >= 0)
+// 	if (content > dupli_a->content)
 // 	{
-// 		ra_rotate(&tmp);
-// 		count--;
+// 		if (content < dupli_a->next->content)
+// 		{
+// 			pa_push(stack_a, stack_a);
+// 			sa_swap(stack_a);
+// 		}
 // 	}
-// 	if (tmp_two->content < tmp->content && tmp_two->content < ft_lstlast(tmp)->content)
+// 	while (ft_lstsize(*stack_b) > 0)
 // 	{
-// 		return (1);
+// 		big_digit_to_a(stack_a, stack_b);
 // 	}
+// 	orga_lst(stack_a);
 // 	return (0);
-// }
-
-// int calculate_rra(t_list **stack_a, t_list **stack_b, int count)
-// {
-// 	t_list *tmp;
-// 	t_list *tmp_two;
-
-// 	tmp = ft_lstduplicate(*stack_a);
-// 	tmp_two = ft_lstduplicate(*stack_b);
-
-// 	while (count >= 0)
-// 	{
-// 		rra_rotate(&tmp);
-// 		count--;
-// 	}
-// 	if (tmp_two->content < tmp->content && tmp_two->content < ft_lstlast(tmp)->content)
-// 	{
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-// int push_after_ra(t_list **stack_a, t_list **stack_b, int count)
-// {
-// 	while (count >= 0)
-// 	{
-// 		ra_rotate(stack_a);
-// 		count--;
-// 	}
-// 	pa_push(stack_a, stack_b);
-// 	return (0);
-// }
-
-// int push_after_rra(t_list **stack_a, t_list **stack_b, int count)
-// {
-// 	while (count >= 0)
-// 	{
-// 		rra_rotate(stack_a);
-// 		count--;
-// 	}
-// 	pa_push(stack_a, stack_b);
-// 	return (0);
-// }
+}

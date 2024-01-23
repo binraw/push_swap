@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/23 15:03:36 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/23 15:56:50 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,4 +95,5 @@ int push_after_ra(t_list **stack_a, t_list **stack_b, int count);
 int push_after_rra(t_list **stack_a, t_list **stack_b, int count);
 int orga_lst(t_list **stack_a);
 int orga_lst_rra(t_list **stack_a);
+int last_num_stack(t_list **stack_a, t_list **stack_b, int content);
 #endif
