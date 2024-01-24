@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:15:15 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/22 14:52:12 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/24 16:08:34 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ void	reverse_rotate(t_list **stack)
 	// 	return (-1);
     head = *stack;
     tail = ft_lstlast(head);
-    next_to = tail->prev;
+    next_to = ft_lstlast2(head);
     next_to->next = NULL;
     tail->next = head;
     tail->prev = NULL;

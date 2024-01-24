@@ -1,4 +1,4 @@
-NAME = pushswap
+NAME = push_swap
 PRINTFNAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3

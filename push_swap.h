@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/24 13:09:16 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/24 15:54:43 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	is_empty_t_list(t_list *li);
 void printListe(t_list *liste);
 int ft_lstcontains(t_list *list, int value);
 int	ft_lstsize(t_list *head);
+t_list	*ft_lstlast2(t_list *lst);
 // int	swap(t_list **stack);
 int	rrr_rotate(t_list **stack_a, t_list **stack_b);
 void	rrb_rotate(t_list **stack_b);
