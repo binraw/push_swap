@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/23 16:07:23 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:37:42 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 		index--;
 	}
 	count = count_number_rota(stack_b, (*stack_a)->content);
-	ft_printf("valeur de count : %d\n", count);
 	while (count > 0)
 	{
 		rb_rotate(stack_b);
@@ -61,7 +60,6 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		index--;
 	}
 	count = count_number_rota(stack_b, (*stack_a)->content);
-	ft_printf("valeur de count : %d\n", count);
 	while (count > 0)
 	{
 		rb_rotate(stack_b);
@@ -78,9 +76,9 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 int	big_digit(t_list **stack_a, t_list **stack_b)
 {
 	int y;
-	// int x;
+	int x;
 	
-	// x = 0;
+	x = 0;
 	pb_push(stack_a,stack_b);
 	printListe(*stack_a);
 	if (ft_lstsize(*stack_a) > 3)
@@ -113,15 +111,17 @@ while (ft_lstsize(*stack_a) > 3)
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
   
- while (ft_lstsize(*stack_b) > 1 )
+ while (ft_lstsize(*stack_b) > 0 )
  {
-	 big_digit_to_a(stack_a, stack_b);
-	
+	// ft_printf("ICI est le probleme");
+	x = big_digit_to_a(stack_a, stack_b);
+	if (x == 1)
+		big_orga(stack_a, stack_b);
  }
 //  if (ft_find_index(*stack_a,minimal_finder(*stack_a)) <= count_mediane(*stack_a))
 //  {
 	orga_lst(stack_a);
- last_num_stack(stack_a, stack_b, (*stack_b)->content);
+//  last_num_stack(stack_a, stack_b, (*stack_b)->content);
 //  }
 //  else 
 //  {
@@ -168,15 +168,15 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 	x = 0;
 	count = count_number_rota_a(stack_a, tmp->content);
 
-	// ft_printf("Valeur de count final : %d\n", count);
 
 	// choisir quel action realiser 
 	printListe(*stack_a);
 	printListe(*stack_b);
 	if (tmp->content > biggest_finder(*stack_a))
 	{
+		orga_lst(stack_a);
 		pa_push(stack_a, stack_b);
-		ra_rotate(stack_a);
+		ra_rotate(stack_a);	
 	}
 	else if (tmp->content < dupli_a->content &&  tmp->content > ft_lstlast(dupli_a)->content)
 	{
@@ -196,14 +196,19 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 		orga_lst(stack_a);
 		pa_push(stack_a, stack_b);
 	}
-	else if (tmp->content > dupli_a->content && tmp->content < dupli_a->next->content)
+	else if (tmp->content < dupli_a->content && tmp->content > dupli_a->next->content)
 	{
 		pa_push(stack_a, stack_b);
 		sa_swap(stack_a);
 	}
+	else if ((tmp->content < dupli_a->content && tmp->content > ft_lstlast(dupli_a)->content) /*|| (tmp->content > dupli_a->content && tmp->content < ft_lstlast(dupli_a)->content ) */)
+	{
+		pa_push(stack_a, stack_b);
+	}
+
 	else 
 	{
-			orga_lst(stack_a);
+		orga_lst(stack_a);
 		
 	}
 
@@ -213,14 +218,11 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 
 int orga_lst(t_list **stack_a)
 {
-
 	while ((*stack_a)->content != minimal_finder(*stack_a))
 	{
+	
 		ra_rotate(stack_a);
 	}
-	
-	
-	
 	return (0);
 }
 int orga_lst_rra(t_list **stack_a)
@@ -231,6 +233,22 @@ int orga_lst_rra(t_list **stack_a)
 	}
 	return (0);
 }
+int big_orga(t_list **stack_a, t_list **stack_b)
+{
+		t_list *tmp;
+	t_list *dupli_a;
+
+	tmp = ft_lstduplicate(*stack_b);
+	dupli_a = ft_lstduplicate(*stack_a);
+
+	// if (tmp->content < dupli_a->content && tmp->content > ft_lstlast(dupli_a)->content)
+	// {
+		pa_push(stack_a, stack_b);
+		ft_printf("NOUVELLE FCT TEST POUR VOIR SI CA DEBEUG");
+	// }
+	return (0);
+}
+
 // cette idee fais beug tout le PC 
 // int last_num_stack(t_list **stack_a, t_list **stack_b, int content)
 // {
@@ -254,4 +272,4 @@ int orga_lst_rra(t_list **stack_a)
 // 	}
 // 	orga_lst(stack_a);
 // 	return (0);
-}
+// }
