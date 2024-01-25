@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/24 15:39:16 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:36:50 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@ void    Stack_init(t_list **stack_a,char *value)
 {
     char **str;
     int i;
+    long    n;
     
     i = 0;
     if (!value)
         return ;
     str = ft_split(value, ' ');
-    // printf("%s\n", value);
      while (str[i])
     {
-        ft_lstadd_back(stack_a, ft_lstnew(ft_atoi(str[i])));
+        n = ft_atoi(str[i]);
+        ft_lstadd_back(stack_a, ft_lstnew(n));
         i++;
     }
     free(str);
@@ -34,39 +35,41 @@ int main(int argc, char **argv)
 {
     t_list  *stack_a;
     t_list  *stack_b;
-     int *num;
-    int i;
-    size_t y;
+	int 	*num;
+    int		i;
+    long    n;
 
     i = 0;
-    y = 0;
     stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
     stack_a = NULL;
     stack_b = NULL;
+    n = 0;
     if (!argc)
         return (-1);
     if (argc < 2)
         return (-1);
-    // printf("%s\n", "test");
    num = malloc(sizeof(char) * (argc));
-    while (++i < argc) {
-        if (ft_strlen(argv[i]) > 1 && i == 1) 
+   if (alpha_check(argv) == -1)
+		return (-1);
+    while (++i < argc) 
+	{
+        n = ft_atoi(argv[i]);
+        if (n < INT_MIN || n > INT_MAX )
         {
-            Stack_init(&stack_a,argv[i]);
-        } 
-        else
-        {
-            ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(argv[i])));
+                write_error(-1);
+                free(stack_a);
+                return (0);
         }
+        if (ft_strlen(argv[i]) > 1 && i == 1)
+          Stack_init(&stack_a,argv[i]);
+        else
+            ft_lstadd_back(&stack_a, ft_lstnew((int)n));
     }
-    // printListe(stack_a);
-    // pb_push(&stack_a,&stack_b);
-    // pb_push(&stack_a,&stack_b);
-    // printListe(stack_a);
-    // printListe(stack_b);
-    // ra_rotate(&stack_a);
-    //  printListe(stack_a);
+	if (write_error(check_dup(stack_a)) == -1)
+		return (-1);
+	if (control_order(&stack_a) == 0)
+        return(-1);
     if (ft_lstsize(stack_a) == 2)
     {
         if (stack_a->content > stack_a->next->content )
@@ -78,13 +81,24 @@ int main(int argc, char **argv)
         five_digit(&stack_a, &stack_b);
     if (ft_lstsize(stack_a) > 5)
         big_digit(&stack_a, &stack_b);
+}
+int control_order(t_list **stack_a)
+{
+    t_list *temp;
+    t_list *dup;
 
-    // sa_swap(&stack_a);
-    // printListe(stack_a);
-    // pb_push(&stack_a,&stack_b);
-    // pb_push(&stack_a,&stack_b);
-    // sb_swap(&stack_b);
-      printListe(stack_a);
-    // printListe(stack_b);
-    // ft_printf("%d\n",10);
+    dup = ft_lstduplicate(*stack_a);
+    temp = dup;
+    while (temp->next != NULL) {
+        if (temp->content > temp->next->content)
+        {
+            free(dup); 
+            return (-1);
+        }
+        temp = temp->next;
+    }
+
+    
+    free(dup);
+    return (0);
 }

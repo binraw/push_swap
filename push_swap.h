@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/24 15:54:43 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/25 14:26:47 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include "printf/libft/libft.h"
 # include "printf/ft_printf.h"
+# include <limits.h>
 
 typedef struct s_list
 {
@@ -99,4 +100,10 @@ int orga_lst_rra(t_list **stack_a);
 int last_num_stack(t_list **stack_a, t_list **stack_b, int content);
 int push_possible(int value, int content, t_list **stack_a, t_list **stack_b);
 int big_orga(t_list **stack_a, t_list **stack_b);
+int	check_dup(t_list *stack_a);
+int write_error(int result);
+int	alpha_check(char **argv);
+int	ft_isalpha(int c);
+int control_order(t_list **stack_a);
+int check_sorted(int nb);
 #endif
