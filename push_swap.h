@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/25 14:26:47 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:23:55 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,6 @@ int	alpha_check(char **argv);
 int	ft_isalpha(int c);
 int control_order(t_list **stack_a);
 int check_sorted(int nb);
+int orga_lst_order(t_list **stack_a, t_list **stack_b);
+int ft_find_place_rrb(t_list *stack_a, int nbr_push);
 #endif
