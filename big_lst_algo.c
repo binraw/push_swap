@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/26 13:51:48 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/01/29 11:00:23 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,10 +216,19 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 
 int orga_lst(t_list **stack_a)
 {
-
-	while ((*stack_a)->content != minimal_finder(*stack_a))
+	if (ft_find_index(*stack_a, minimal_finder(*stack_a)) > count_mediane(*stack_a) )
 	{
-		ra_rotate(stack_a);
+		while ((*stack_a)->content != minimal_finder(*stack_a))
+	{
+		rra_rotate(stack_a);
+	}
+	}
+	else 
+	{
+		while ((*stack_a)->content != minimal_finder(*stack_a))
+		{
+			ra_rotate(stack_a);
+		}
 	}
 	return (0);
 }
@@ -240,5 +249,6 @@ int orga_lst_order(t_list **stack_a, t_list **stack_b)
 		 	
 		ra_rotate(stack_a);
 	}
+	
 	return (0);
 }
