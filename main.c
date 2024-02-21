@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 14:11:26 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:14:30 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int main(int argc, char **argv)
     long    n;
 
     i = 0;
-    stack_a = malloc(sizeof(t_list));
-	stack_b = malloc(sizeof(t_list));
+    // stack_a = malloc(sizeof(t_list));
+	// stack_b = malloc(sizeof(t_list));
     stack_a = NULL;
     stack_b = NULL;
     n = 0;
@@ -50,6 +50,12 @@ int main(int argc, char **argv)
     if (argc < 2)
         return (-1);
    num = malloc(sizeof(char) * (argc));
+   if (!num)
+   {
+        free(stack_a);
+        free(stack_b);
+        return (0);
+   }
    if (alpha_check(argv) == -1)
 		return (-1);
     while (++i < argc) 
@@ -59,6 +65,7 @@ int main(int argc, char **argv)
         {
                 write_error(-1);
                 free(stack_a);
+                free(stack_b);
                 return (0);
         }
         if (ft_strlen(argv[i]) > 1 && i == 1)
@@ -81,6 +88,10 @@ int main(int argc, char **argv)
         five_digit(&stack_a, &stack_b);
     if (ft_lstsize(stack_a) > 5)
         big_digit(&stack_a, &stack_b);
+    free(stack_a);
+    free(stack_b);
+    
+    free(num);
 }
 int control_order(t_list **stack_a)
 {

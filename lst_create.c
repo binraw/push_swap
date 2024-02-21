@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/17 10:57:27 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:34:56 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ t_list *ft_lstduplicate(const t_list *original)
         copy_ptr = copy_ptr->next;
         original_ptr = original_ptr->next;
     }
-
     return copy;
 }
 

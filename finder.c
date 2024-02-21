@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 14:54:32 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/26 13:25:00 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:56:28 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int ft_find_place_b(t_list *stack_b, int nbr_push)
 			i++;
 		}
 	}
+	free(stack_from);
 	return (i);
 }
 int ft_find_place_a(t_list *stack_a, int nbr_push)
@@ -97,5 +98,6 @@ int ft_find_place_a(t_list *stack_a, int nbr_push)
 			i++;
 		}
 	}
+	free(stack_from);
 	return (i);
 }

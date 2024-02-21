@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 14:30:59 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 15:11:39 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 		}	
 	}
 	pb_push(stack_a, stack_b);
+	free(stack_from);
 }
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 {
@@ -75,11 +76,7 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 	t_list *stack_from;
 
 	stack_from = ft_lstduplicate(*stack_b);
-	
-
 	pos = ft_lstsize(*stack_a);   //possiblement la solution pour savoir combien de fois il reste a rra 
-	
-	
 	while (index >= 0)
 	{
 		rra_rotate(stack_a);
@@ -92,6 +89,7 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		count--;
 	}
 	pb_push(stack_a, stack_b);
+	free(stack_from);
 }
 
 
@@ -130,6 +128,7 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 	tmp = ft_lstduplicate(stack_a);
 	i = 0;
 	x = 0;
+	count = 0;
 	while (i <= ft_lstsize(stack_a))
 	{
 		if (count_number_rota(&stack_b, tmp->content) < count || i == 0)
@@ -142,6 +141,7 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 		tmp->content = tmp->next->content;
 		i++;
 	}
+	free(tmp);
 	return (x);
 }
 
@@ -170,6 +170,8 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 		pa_push(stack_a, stack_b);
 	else 
 		orga_lst_order(stack_a, stack_b);
+	free(tmp);
+	free(dupli_a);
 	return (0);
 }
 
@@ -219,10 +221,10 @@ int orga_lst_order(t_list **stack_a, t_list **stack_b)
 		 if (tmp->content < ft_lstlast(*stack_a)->content && tmp->content > minimal_finder(*stack_a))
 		 {
 			break ;
-		 }
-		 	
+		 } 	
 		ra_rotate(stack_a);
 	}
-	
+	free(tmp);
+	free(dupli_a);
 	return (0);
 }
