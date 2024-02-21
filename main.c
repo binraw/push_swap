@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/26 13:50:29 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:11:26 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ int main(int argc, char **argv)
         five_digit(&stack_a, &stack_b);
     if (ft_lstsize(stack_a) > 5)
         big_digit(&stack_a, &stack_b);
-        
-    // printListe(stack_a);
 }
 int control_order(t_list **stack_a)
 {
@@ -99,8 +97,6 @@ int control_order(t_list **stack_a)
         }
         temp = temp->next;
     }
-
-    
     free(dup);
     return (0);
 }

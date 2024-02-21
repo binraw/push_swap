@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/26 13:23:55 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:30:34 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,7 @@ int control_order(t_list **stack_a);
 int check_sorted(int nb);
 int orga_lst_order(t_list **stack_a, t_list **stack_b);
 int ft_find_place_rrb(t_list *stack_a, int nbr_push);
+void	push_minimal(t_list **stack_a, t_list **stack_b);
+void	orga_papush(t_list **stack_a, t_list **stack_b);
+void	papush_sa(t_list **stack_a, t_list **stack_b);
 #endif

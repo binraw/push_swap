@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/29 11:00:23 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:30:59 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,11 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 			}
 		}
 	}
-	
 	while (index >= 0)
 	{
 		ra_rotate(stack_a);
 		index--;
 	}
-	// count = count_number_rota(stack_b, (*stack_a)->content);
-	// ft_printf("la valeur de count : %d\n", count);
 	if (count <= count_mediane(*stack_b))
 	{
 		while (count > 0)
@@ -69,8 +66,6 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 			count--;
 		}	
 	}
-
-	
 	pb_push(stack_a, stack_b);
 }
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
@@ -108,30 +103,20 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 	x = 0;
 	pb_push(stack_a,stack_b);
 	if (ft_lstsize(*stack_a) > 3)
-	{
 		pb_push(stack_a,stack_b);
-	}
 	sort_two_elemb(*stack_b);
 while (ft_lstsize(*stack_a) > 3)
 {
 	y = index_to_push(*stack_a, *stack_b);
-	// ft_printf("%d\n", y);
 	if (y <= count_mediane(*stack_a)) // ici c'est si le chiffre est en dessous de la mediane de stack_a
-	{
 		transfer_num_ra(stack_a, stack_b, y);
-	}
 	else
-	{
-		transfer_num_rra(stack_a, stack_b, y);
-	} // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
-		
+		transfer_num_rra(stack_a, stack_b, y); // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
  while (ft_lstsize(*stack_b) > 0 )
- {
 	x = big_digit_to_a(stack_a, stack_b);
- }
-	orga_lst(stack_a);
+orga_lst(stack_a);
 	return (0);
 }
 
@@ -163,55 +148,48 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 {
 	int count;
-	int x;
-
 	t_list *tmp;
 	t_list *dupli_a;
 	
 	tmp = ft_lstduplicate(*stack_b);
 	dupli_a = ft_lstduplicate(*stack_a);
-	x = 0;
 	count = count_number_rota_a(stack_a, tmp->content);
 	if (tmp->content > biggest_finder(*stack_a))
-	{
-		orga_lst(stack_a);
-		pa_push(stack_a, stack_b);
-		ra_rotate(stack_a);	
-	}
+		push_minimal(stack_a, stack_b);
 	else if (tmp->content < dupli_a->content &&  tmp->content > ft_lstlast(dupli_a)->content)
-	{
 		pa_push(stack_a, stack_b);
-	}
 	else if (tmp->content < ft_lstlast(dupli_a)->content && tmp->content > minimal_finder(*stack_a) )
-	{
 		rra_rotate(stack_a);
-		
-	}
 	else if (tmp->content < dupli_a->content && dupli_a->content == minimal_finder(*stack_a))
-	{
 		pa_push(stack_a, stack_b);
-		// ft_printf("pa 1\n");
-	}
 	else if (ft_lstsize(*stack_b) == 1 && tmp->content < minimal_finder(*stack_a))
-	{
-		orga_lst(stack_a);
-		pa_push(stack_a, stack_b);
-	}
+		orga_papush(stack_a, stack_b);
 	else if (tmp->content < dupli_a->content && tmp->content > dupli_a->next->content)
-	{
-		pa_push(stack_a, stack_b);
-		sa_swap(stack_a);
-	}
+		papush_sa(stack_a, stack_b);
 	else if ((tmp->content < dupli_a->content && tmp->content > ft_lstlast(dupli_a)->content) /*|| (tmp->content > dupli_a->content && tmp->content < ft_lstlast(dupli_a)->content ) */)
-	{
 		pa_push(stack_a, stack_b);
-	}
 	else 
-	{
-		// orga_lst(stack_a);
 		orga_lst_order(stack_a, stack_b);
-	}
 	return (0);
+}
+
+void	push_minimal(t_list **stack_a, t_list **stack_b)
+{
+	orga_lst(stack_a);
+	pa_push(stack_a, stack_b);
+	ra_rotate(stack_a);	
+}
+
+void	orga_papush(t_list **stack_a, t_list **stack_b)
+{
+	orga_lst(stack_a);
+	pa_push(stack_a, stack_b);
+}
+
+void	papush_sa(t_list **stack_a, t_list **stack_b)
+{
+	pa_push(stack_a, stack_b);
+	sa_swap(stack_a);
 }
 
 int orga_lst(t_list **stack_a)
@@ -219,16 +197,12 @@ int orga_lst(t_list **stack_a)
 	if (ft_find_index(*stack_a, minimal_finder(*stack_a)) > count_mediane(*stack_a) )
 	{
 		while ((*stack_a)->content != minimal_finder(*stack_a))
-	{
 		rra_rotate(stack_a);
-	}
 	}
 	else 
 	{
 		while ((*stack_a)->content != minimal_finder(*stack_a))
-		{
 			ra_rotate(stack_a);
-		}
 	}
 	return (0);
 }
