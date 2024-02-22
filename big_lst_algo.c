@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 15:11:39 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:55:49 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 		}	
 	}
 	pb_push(stack_a, stack_b);
-	free(stack_from);
+	// free(stack_from);
+	ft_lstclear(&stack_from, free);
 }
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 {
@@ -89,7 +90,8 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		count--;
 	}
 	pb_push(stack_a, stack_b);
-	free(stack_from);
+	// free(stack_from);
+	ft_lstclear(&stack_from, free);
 }
 
 
@@ -141,7 +143,7 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 		tmp->content = tmp->next->content;
 		i++;
 	}
-	free(tmp);
+	ft_lstclear(&tmp, free);
 	return (x);
 }
 
@@ -170,8 +172,8 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 		pa_push(stack_a, stack_b);
 	else 
 		orga_lst_order(stack_a, stack_b);
-	free(tmp);
-	free(dupli_a);
+	ft_lstclear(&tmp, free);
+	ft_lstclear(&dupli_a, free);
 	return (0);
 }
 
@@ -224,7 +226,7 @@ int orga_lst_order(t_list **stack_a, t_list **stack_b)
 		 } 	
 		ra_rotate(stack_a);
 	}
-	free(tmp);
-	free(dupli_a);
+	ft_lstclear(&tmp, free);
+	ft_lstclear(&dupli_a, free);
 	return (0);
 }

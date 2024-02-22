@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:20:39 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 14:33:50 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:14:40 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	check_dup(t_list *stack_a)
 		}
 		stack_a = stack_a->next;
 	}
+	free(tmp);
 	return (0);
 }
 

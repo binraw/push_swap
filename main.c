@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:06:35 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 15:14:30 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:36:10 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int main(int argc, char **argv)
    num = malloc(sizeof(char) * (argc));
    if (!num)
    {
-        free(stack_a);
-        free(stack_b);
+        ft_lstclear(&stack_a, free);
+        ft_lstclear(&stack_b, free);
         return (0);
    }
    if (alpha_check(argv) == -1)
@@ -64,8 +64,8 @@ int main(int argc, char **argv)
         if (n < INT_MIN || n > INT_MAX )
         {
                 write_error(-1);
-                free(stack_a);
-                free(stack_b);
+                ft_lstclear(&stack_a, free);
+                ft_lstclear(&stack_b, free);
                 return (0);
         }
         if (ft_strlen(argv[i]) > 1 && i == 1)
@@ -74,9 +74,21 @@ int main(int argc, char **argv)
             ft_lstadd_back(&stack_a, ft_lstnew((int)n));
     }
 	if (write_error(check_dup(stack_a)) == -1)
-		return (-1);
+    {
+    ft_lstclear(&stack_a, free);
+    ft_lstclear(&stack_b, free);
+    free(num);
+        return (-1);
+    }
+		
 	if (control_order(&stack_a) == 0)
-        return(-1);
+    {
+         ft_lstclear(&stack_a, free);
+    ft_lstclear(&stack_b, free);
+    free(num);
+        return (-1);
+    }
+        
     if (ft_lstsize(stack_a) == 2)
     {
         if (stack_a->content > stack_a->next->content )
@@ -88,10 +100,11 @@ int main(int argc, char **argv)
         five_digit(&stack_a, &stack_b);
     if (ft_lstsize(stack_a) > 5)
         big_digit(&stack_a, &stack_b);
-    free(stack_a);
-    free(stack_b);
+    ft_lstclear(&stack_a, free);
+    ft_lstclear(&stack_b, free);
     
     free(num);
+   
 }
 int control_order(t_list **stack_a)
 {
@@ -103,11 +116,13 @@ int control_order(t_list **stack_a)
     while (temp->next != NULL) {
         if (temp->content > temp->next->content)
         {
-            free(dup); 
+            // free(dup); 
+            ft_lstclear(&dup, free);
             return (-1);
         }
         temp = temp->next;
     }
-    free(dup);
+    // free(dup);
+      ft_lstclear(&dup, free);
     return (0);
 }

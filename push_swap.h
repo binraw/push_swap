@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 14:30:34 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:47:16 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,6 @@ int ft_find_place_rrb(t_list *stack_a, int nbr_push);
 void	push_minimal(t_list **stack_a, t_list **stack_b);
 void	orga_papush(t_list **stack_a, t_list **stack_b);
 void	papush_sa(t_list **stack_a, t_list **stack_b);
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstclear_all(t_list **lst, void (*del)(void *));
 #endif

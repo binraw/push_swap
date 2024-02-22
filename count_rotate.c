@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:12:33 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/21 14:45:49 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 11:37:13 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int count_number_rota(t_list **stack_b, int nbr)
     stack_from = ft_lstduplicate(*stack_b);
     i = 0;
     i = ft_find_place_b(stack_from, nbr);
-	free(stack_from);
+	ft_lstclear(&stack_from, free);
     return (i);
 }
 
@@ -42,6 +42,6 @@ int count_number_rota_a(t_list **stack_a, int nbr)
     stack_from = ft_lstduplicate(*stack_a);
     i = 0;
     i = ft_find_place_a(stack_from, nbr);
-	free(stack_from);
+	ft_lstclear(&stack_from, free);
     return (i);
 }
