@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:41:34 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:49:41 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:57:49 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,3 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	}
 	*lst = NULL;
 }
-// void	ft_lstclear_all(t_list **lst, void (*del)(void *))
-// {
-// 	t_list	*current;
-// 	t_list	*next;
-
-// 	if (lst == NULL || *lst == NULL || del == NULL)
-// 		return ;
-// 	current = *lst;
-// 	while (current != NULL)
-// 	{
-// 		next = current->next;
-// 		del(&current->content);
-// 		free(current);
-// 		current = next;
-// 	}
-// 	*lst = NULL;
-// }

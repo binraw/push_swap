@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:55:49 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:56:37 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 		}	
 	}
 	pb_push(stack_a, stack_b);
-	// free(stack_from);
 	ft_lstclear(&stack_from, free);
 }
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
@@ -90,7 +89,6 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		count--;
 	}
 	pb_push(stack_a, stack_b);
-	// free(stack_from);
 	ft_lstclear(&stack_from, free);
 }
 
@@ -108,10 +106,10 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 while (ft_lstsize(*stack_a) > 3)
 {
 	y = index_to_push(*stack_a, *stack_b);
-	if (y <= count_mediane(*stack_a)) // ici c'est si le chiffre est en dessous de la mediane de stack_a
+	if (y <= count_mediane(*stack_a))
 		transfer_num_ra(stack_a, stack_b, y);
 	else
-		transfer_num_rra(stack_a, stack_b, y); // ICI COMMENCE DE L'AUTRE SENS c'est exactement la meme  sinon
+		transfer_num_rra(stack_a, stack_b, y);
 }
  sort_three_numbers(three_digit(*stack_a), stack_a);
  while (ft_lstsize(*stack_b) > 0 )

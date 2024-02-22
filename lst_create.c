@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:44 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:40:45 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:57:43 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,7 @@ int	is_empty_t_list(t_list *li)
 
 	return (0);
 }
-// int t_list_length(t_list li)
-// {
-// 	if (is_empty_t_list(li))
-// 		return (0);
-// 	return (li->lenght);
-// }
 
-
-// int	t_list_first(t_list li)
-// {
-// 	if (is_empty_t_list(li))
-// 		return (0);
-// 	return (li->begin->content);
-// }
-
-// int	t_list_last(t_list li)
-// {
-// 	if (is_empty_t_list(li))
-// 		return (0);
-// 	return (li->end->content);
-// }
-
-
-// t_list *ft_lstduplicate(const t_list *original)
-//  {
-//     if (!original) 
-//         return NULL;
-    
-
-//     t_list *copy = ft_lstnew(original->content);
-//     t_list *original_ptr = original->next;
-//     t_list *copy_ptr = copy;
-
-//     while (original_ptr) 
-//     {
-//         copy_ptr->next = ft_lstnew(original_ptr->content);
-//         copy_ptr = copy_ptr->next;
-//         original_ptr = original_ptr->next;
-//     }
-//     return copy;
-// }
 t_list *ft_lstduplicate(const t_list *original)
 {
     if (!original)
@@ -77,7 +37,7 @@ t_list *ft_lstduplicate(const t_list *original)
         copy_ptr->next = ft_lstnew(original_ptr->content);
         if (!copy_ptr->next)
         {
-            ft_lstclear(&copy, free); // Libérer la mémoire si une allocation échoue
+            ft_lstclear(&copy, free);
             return NULL;
         }
         copy_ptr = copy_ptr->next;
@@ -106,9 +66,9 @@ int ft_lstcontains(t_list *list, int value)
     while (list != NULL)
     {
         if (list->content == value)
-            return 1; // La valeur est présente dans la liste
+            return (1);
         list = list->next;
     }
-    return 0; // La valeur n'est pas présente dans la liste
+    return (0);
 }
 

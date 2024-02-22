@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:20:39 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 11:14:40 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:56:51 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,6 @@ int write_error(int result)
     }
     return (0);
 }
-// static int	ft_isalpha(int c)
-// {
-// 	if ((c >= 58 && c <= 126) || (c >= 33 && c <= 42)
-// 		|| (c == 44) || (c == 46) || (c == 47))
-// 		return (1);
-// 	return (0);
-// }
-
 
 int	alpha_check(char **argv)
 {

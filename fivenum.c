@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:51:53 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/01/24 15:33:03 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 12:57:12 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,4 @@ int	five_digit(t_list **stack_a, t_list **stack_b)
 	return (0);
 }
 
-// void sort_five_num(t_list **stack_a)
-// {
-// 	t_list *temp;
-
-// 	temp = *stack_a;
-// 	if (temp->content > ft_lstlast(*stack_a)->content)
-// 		ra_rotate(stack_a);
-// 	else if (temp->content < temp->next->content)
-// 		return ;
-// 	else if (temp->content > temp->next->content && temp->content > temp->next->next->content && temp->content < ft_lstlast(*stack_a)->content)
-// 		{
-// 				rra_rotate(stack_a);
-// 				sa_swap(stack_a);
-// 				ra_rotate(stack_a);
-// 				ra_rotate(stack_a);
-			
-// 		}
-// 		else if (temp->content > temp->next->content)
-// 			sa_swap(stack_a);
-			
-// }
 
