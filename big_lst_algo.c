@@ -12,13 +12,72 @@
 
 #include "push_swap.h"
 
+int rr_transfer(t_list **stack_a, t_list **stack_b, int index)
+{
+	int count;
+
+	count = ount_number_rota(stack_b, (*stack_a)->content);
+	while (index >= 0)
+	{
+		rr_rotate(stack_a, stack_b);
+		index--;
+		count--;
+	}
+	return (index);
+}
+
+int rr_transfer_count(t_list **stack_a, t_list **stack_b, int index)
+{
+	int count;
+
+	count = ount_number_rota(stack_b, (*stack_a)->content);
+	while (count > 0)
+	{
+		rr_rotate(stack_a, stack_b);
+		index--;
+		count--;
+	}
+	return (index);
+}
+
+int ra_transfer(t_list **stack_a, t_list **stack_b, int index)
+{
+	while (index >= 0)
+	{
+		ra_rotate(stack_a);
+		index--;
+	}
+	return (index);
+}
+
+int rb_transfer(t_list **stack_a, t_list **stack_b, int count)
+{
+	while (count > 0)
+		{
+			rb_rotate(stack_b);
+			count--;
+		}
+		return (count);
+}
+
+int rrb_transfer(t_list **stack_a, t_list **stack_b, int count)
+{
+			count = ft_lstsize(*stack_b) - count;
+		while (count > 0)
+		{
+			rrb_rotate(stack_b);
+			count--;
+		}
+		return (count);
+}
+
 void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
 	int x;
 	t_list *stack_from;
 
-	x = 0;
+	x = index;
 	stack_from = ft_lstduplicate(*stack_b);
 	count = count_number_rota(stack_b, (*stack_a)->content);
 	if (index == 0 && count == 1)
@@ -26,49 +85,22 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 	if (index >=0 && count > 0)
 	{
 		if (index < count)
-		{
-			while (index >= 0)
-			{
-				rr_rotate(stack_a, stack_b);
-				index--;
-				count--;
-			}
-		}
+			index = rr_transfer(stack_a, stack_b, index);
+		count = count - (x - index);
+		x = index;
 		if (count < index)
-		{
-			while (count > 0)
-			{
-				rr_rotate(stack_a, stack_b);
-				index--;
-				count--;
-			}
-		}
+			index = rr_transfer_count(stack_a, stack_b, index);
+		count = count - (x - index);
 	}
-	while (index >= 0)
-	{
-		ra_rotate(stack_a);
-		index--;
-	}
+	index =  ra_transfer(stack_a, stack_b, index);
 	if (count <= count_mediane(*stack_b))
-	{
-		while (count > 0)
-	{
-		rb_rotate(stack_b);
-		count--;
-	}
-	}
+		count = rb_transfer(stack_a, stack_b, count);
 	else
-	{
-		count = ft_lstsize(*stack_b) - count;
-		while (count > 0)
-		{
-			rrb_rotate(stack_b);
-			count--;
-		}	
-	}
+		count = rrb_transfer(stack_a, stack_b, count);
 	pb_push(stack_a, stack_b);
 	ft_lstclear(&stack_from, free);
 }
+
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
