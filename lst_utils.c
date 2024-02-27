@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 10:41:34 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:57:49 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/22 13:00:13 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (current != NULL)
 	{
 		next = current->next;
-		// del(&current->content);
 		free(current);
 		current = next;
 	}

@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:47:16 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:54:46 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,14 @@ void	orga_papush(t_list **stack_a, t_list **stack_b);
 void	papush_sa(t_list **stack_a, t_list **stack_b);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstclear_all(t_list **lst, void (*del)(void *));
+void	ft_combi_clear(t_list **tmp, t_list **dupli_a);
+int	rr_transfer_combi(t_list **stack_a, t_list **stack_b, int index);
+int rrb_transfer(t_list **stack_b, int count);
+int rb_transfer( t_list **stack_b, int count);
+int ra_transfer(t_list **stack_a, int index);
+int rr_transfer_count(t_list **stack_a, t_list **stack_b, int index);
+int rr_transfer(t_list **stack_a, t_list **stack_b, int index);
+int    build_stack(int argc, char **argv, t_list **stack_a);
+int error_value(t_list **stack_a, t_list **stack_b);
+void    control_sort_list(t_list **stack_a, t_list **stack_b);
 #endif

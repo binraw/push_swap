@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:56:37 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:55:30 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int rr_transfer(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
 
-	count = ount_number_rota(stack_b, (*stack_a)->content);
+	count = count_number_rota(stack_b, (*stack_a)->content);
 	while (index >= 0)
 	{
 		rr_rotate(stack_a, stack_b);
@@ -30,7 +30,7 @@ int rr_transfer_count(t_list **stack_a, t_list **stack_b, int index)
 {
 	int count;
 
-	count = ount_number_rota(stack_b, (*stack_a)->content);
+	count = count_number_rota(stack_b, (*stack_a)->content);
 	while (count > 0)
 	{
 		rr_rotate(stack_a, stack_b);
@@ -40,7 +40,7 @@ int rr_transfer_count(t_list **stack_a, t_list **stack_b, int index)
 	return (index);
 }
 
-int ra_transfer(t_list **stack_a, t_list **stack_b, int index)
+int ra_transfer(t_list **stack_a,  int index)
 {
 	while (index >= 0)
 	{
@@ -50,7 +50,7 @@ int ra_transfer(t_list **stack_a, t_list **stack_b, int index)
 	return (index);
 }
 
-int rb_transfer(t_list **stack_a, t_list **stack_b, int count)
+int rb_transfer(t_list **stack_b, int count)
 {
 	while (count > 0)
 		{
@@ -60,7 +60,7 @@ int rb_transfer(t_list **stack_a, t_list **stack_b, int count)
 		return (count);
 }
 
-int rrb_transfer(t_list **stack_a, t_list **stack_b, int count)
+int rrb_transfer(t_list **stack_b, int count)
 {
 			count = ft_lstsize(*stack_b) - count;
 		while (count > 0)
@@ -69,6 +69,23 @@ int rrb_transfer(t_list **stack_a, t_list **stack_b, int count)
 			count--;
 		}
 		return (count);
+}
+
+int	rr_transfer_combi(t_list **stack_a, t_list **stack_b, int index)
+{
+	int count;
+	int x;
+
+	x = index;
+	count = count_number_rota(stack_b, (*stack_a)->content);
+	if (index < count)
+			index = rr_transfer(stack_a, stack_b, index);
+		count = count - (x - index);
+		x = index;
+		if (count < index)
+			index = rr_transfer_count(stack_a, stack_b, index);
+		count = count - (x - index);
+	return (count);
 }
 
 void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
@@ -83,20 +100,12 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
 	if (index == 0 && count == 1)
 		rr_rotate(stack_a, stack_b);
 	if (index >=0 && count > 0)
-	{
-		if (index < count)
-			index = rr_transfer(stack_a, stack_b, index);
-		count = count - (x - index);
-		x = index;
-		if (count < index)
-			index = rr_transfer_count(stack_a, stack_b, index);
-		count = count - (x - index);
-	}
-	index =  ra_transfer(stack_a, stack_b, index);
+		count = rr_transfer_combi(stack_a, stack_b, index);
+	index =  ra_transfer(stack_a, index);
 	if (count <= count_mediane(*stack_b))
-		count = rb_transfer(stack_a, stack_b, count);
+		count = rb_transfer(stack_b, count);
 	else
-		count = rrb_transfer(stack_a, stack_b, count);
+		count = rrb_transfer(stack_b, count);
 	pb_push(stack_a, stack_b);
 	ft_lstclear(&stack_from, free);
 }
@@ -108,7 +117,7 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 	t_list *stack_from;
 
 	stack_from = ft_lstduplicate(*stack_b);
-	pos = ft_lstsize(*stack_a);   //possiblement la solution pour savoir combien de fois il reste a rra 
+	pos = ft_lstsize(*stack_a);
 	while (index >= 0)
 	{
 		rra_rotate(stack_a);
@@ -177,6 +186,12 @@ int index_to_push(t_list *stack_a, t_list *stack_b)
 	return (x);
 }
 
+
+void	ft_combi_clear(t_list **tmp, t_list **dupli_a)
+{
+	ft_lstclear(tmp, free);
+	ft_lstclear(dupli_a, free);
+}
 int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 {
 	int count;
@@ -202,8 +217,7 @@ int big_digit_to_a(t_list **stack_a, t_list **stack_b)
 		pa_push(stack_a, stack_b);
 	else 
 		orga_lst_order(stack_a, stack_b);
-	ft_lstclear(&tmp, free);
-	ft_lstclear(&dupli_a, free);
+	ft_combi_clear(&tmp, &dupli_a);
 	return (0);
 }
 
