@@ -5,9 +5,9 @@ CFLAGS = -Wall -Werror -Wextra -g3
 PRINTFDIR = ./printf
 LIBFTDIR = ./printf/libft
 
-SRCS = lst_create.c main.c swap_command.c lst_utils.c threenum.c fivenum.c finder.c big_lst_algo.c check.c count_rotate.c rotation.c check_error.c
+SRCS = lst_create.c main.c swap_command.c lst_utils.c threenum.c fivenum.c finder.c big_lst_algo.c check.c count_rotate.c rotation.c check_error.c rotation_utils.c transfer_utils.c big_utils.c
 
-# Remplacez .c par .o pour obtenir les noms des fichiers objets
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -16,7 +16,6 @@ makeprintf:
 	@make -C $(PRINTFDIR)
 	@cp $(PRINTFDIR)/$(PRINTFNAME) $(NAME)
 
-# Ajoutez les dépendances pour les fichiers objets
 $(NAME): makeprintf $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(PRINTFDIR) -lftprintf
 

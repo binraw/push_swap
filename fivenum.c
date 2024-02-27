@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 15:51:53 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:57:12 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:12:40 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,44 @@ int	five_digit(t_list **stack_a, t_list **stack_b)
 	}
 	
 	return (0);
+}
+int	rr_transfer_combi(t_list **stack_a, t_list **stack_b, int index)
+{
+	int count;
+	int x;
+
+	x = index;
+	count = count_number_rota(stack_b, (*stack_a)->content);
+	if (index < count)
+			index = rr_transfer(stack_a, stack_b, index);
+		count = count - (x - index);
+		x = index;
+		if (count < index)
+			index = rr_transfer_count(stack_a, stack_b, index);
+		count = count - (x - index);
+	return (count);
+}
+
+void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index)
+{
+	int count;
+	int x;
+	t_list *stack_from;
+
+	x = index;
+	stack_from = ft_lstduplicate(*stack_b);
+	count = count_number_rota(stack_b, (*stack_a)->content);
+	if (index == 0 && count == 1)
+		rr_rotate(stack_a, stack_b);
+	if (index >=0 && count > 0)
+		count = rr_transfer_combi(stack_a, stack_b, index);
+	index =  ra_transfer(stack_a, index);
+	if (count <= count_mediane(*stack_b))
+		count = rb_transfer(stack_b, count);
+	else
+		count = rrb_transfer(stack_b, count);
+	pb_push(stack_a, stack_b);
+	ft_lstclear(&stack_from, free);
 }
 
 

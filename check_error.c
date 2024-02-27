@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 10:20:39 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/22 12:56:51 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/27 13:07:16 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,18 @@ int check_sorted(int nb)
 	if (nb == 1)
 		return (1);
 	return (0);
+}
+int error_value(t_list **stack_a, t_list **stack_b)
+{
+    if (write_error(check_dup(*stack_a)) == -1)
+    {
+        ft_combi_clear(stack_a, stack_b);
+        return (-1);
+    }
+	if (control_order(stack_a) == 0)
+    {
+        ft_combi_clear(stack_a, stack_b);
+        return (-1);
+    }
+    return (0);
 }
