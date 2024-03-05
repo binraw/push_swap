@@ -28,7 +28,8 @@ void	stack_init(t_list **stack_a, char *value)
 		ft_lstadd_back(stack_a, ft_lstnew(n));
 		i++;
 	}
-	free(str);
+	free(str[0]);
+	free(str); // rajoute le free du tab
 }
 
 int	build_stack(int argc, char **argv, t_list **stack_a)

@@ -52,8 +52,12 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 	}
 	sort_three_numbers(three_digit(*stack_a), stack_a);
 	while (ft_lstsize(*stack_b) > 0)
+	{
 		big_digit_to_a(stack_a, stack_b);
+	}
+		
 	orga_lst(stack_a);
+	print_liste(*stack_a);
 	return (0);
 }
 
@@ -102,7 +106,7 @@ int	big_digit_to_a(t_list **stack_a, t_list **stack_b)
 	else if (condition_papush(&tmp, &dupli_a) == 1)
 		pa_push(stack_a, stack_b);
 	else if (tmp->content < ft_lstlast(dupli_a)->content
-		&& tmp->content > minimal_finder(*stack_a))
+		&& tmp->content > minimal_finder(*stack_a)) // trouver index du mini pour peut etre inverser en ra
 		rra_rotate(stack_a);
 	else if (tmp->content < dupli_a->content
 		&& dupli_a->content == minimal_finder(*stack_a))
@@ -114,7 +118,15 @@ int	big_digit_to_a(t_list **stack_a, t_list **stack_b)
 			&& tmp->content > ft_lstlast(dupli_a)->content))
 		pa_push(stack_a, stack_b);
 	else
+	{
 		orga_lst(stack_a);
+		if(tmp->content > ft_lstlast(dupli_a)->content && tmp->content > biggest_finder(*stack_a))
+		{
+			pa_push(stack_a, stack_b);
+			ra_rotate(stack_a);
+		}
+	}
+		
 	ft_combi_clear(&tmp, &dupli_a);
 	return (0);
 }
