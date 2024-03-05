@@ -57,10 +57,6 @@ static size_t	ft_unsigned_int_len(unsigned int number)
 	size_t	y;
 
 	y = 0;
-	if (number < 0)
-	{
-		number *= -1;
-	}
 	if (number != 0)
 	{
 		while (number > 0)

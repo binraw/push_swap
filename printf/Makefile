@@ -12,17 +12,28 @@ SRCS =  ft_printf.c \
 				ft_printf_char.c \
 				ft_printf_putmem.c 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = ft_printf.o \
+                ft_printf_hexa.o \
+                ft_printf_num.o \
+                ft_printf_str.o \
+				ft_printf_char.o \
+				ft_printf_putmem.o
 
-all: $(NAME)
+LIB = ft_printf.h
+
+all: makelibft $(NAME)
+
+
+$(NAME): $(OBJS) 
+	@cp $(LIBFTDIR)/$(LIBFTNAME) .
+	@mv $(LIBFTNAME) $(NAME)
+	ar -rcs $(NAME) $(OBJS)
+
+%.o: %.c $(LIB)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 makelibft:
 	@make -C $(LIBFTDIR)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
-
-$(NAME): makelibft $(OBJS)
-	@ar -r $(NAME) $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
@@ -37,3 +48,4 @@ fclean: clean
 re: fclean all 
 
 .PHONY:                         all bonus clean fclean re 
+

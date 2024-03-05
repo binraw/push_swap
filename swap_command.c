@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:15:15 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/27 13:04:07 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:06:40 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,32 @@ void	swap(t_list **stack)
 	if (!head && !next)
 		ft_printf("error command");
 	tmp_val = head->content;
-	head->content= next->content;
+	head->content = next->content;
 	next->content = tmp_val;
 }
 
-void sa_swap(t_list **stack_a)
+void	sa_swap(t_list **stack_a)
 {
 	swap(stack_a);
-    ft_printf("sa\n");
-}
-void sb_swap(t_list **stack_b)
-{
-	swap(stack_b);
-    ft_printf("sb\n");
+	ft_printf("sa\n");
 }
 
-int ss_swap(t_list **stack_a, t_list **stack_b)
+void	sb_swap(t_list **stack_b)
 {
-    if (ft_lstsize(*stack_a) < 2 || ft_lstsize(*stack_b) < 2)
-        return (-1);
-    swap(stack_a);
-    swap(stack_b);
-    ft_printf("ss\n");
-    return (0);
+	swap(stack_b);
+	ft_printf("sb\n");
 }
+
+int	ss_swap(t_list **stack_a, t_list **stack_b)
+{
+	if (ft_lstsize(*stack_a) < 2 || ft_lstsize(*stack_b) < 2)
+		return (-1);
+	swap(stack_a);
+	swap(stack_b);
+	ft_printf("ss\n");
+	return (0);
+}
+
 void	push(t_list **stack_to, t_list **stack_from)
 {
 	t_list	*tmp;
@@ -62,15 +64,13 @@ void	push(t_list **stack_to, t_list **stack_from)
 	{
 		head_to = tmp;
 		head_to->next = NULL;
-        head_to->prev = NULL;
+		head_to->prev = NULL;
 		*stack_to = head_to;
 	}
 	else
 	{
 		tmp->next = head_to;
-        tmp->prev = NULL;
+		tmp->prev = NULL;
 		*stack_to = tmp;
 	}
 }
-
-

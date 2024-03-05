@@ -1,36 +1,42 @@
 NAME = push_swap
 PRINTFNAME = libftprintf.a
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 PRINTFDIR = ./printf
 LIBFTDIR = ./printf/libft
-
+DIR_OBJ = .object/
+RM = rm -Rf
 SRCS = lst_create.c main.c swap_command.c lst_utils.c threenum.c fivenum.c finder.c big_lst_algo.c check.c count_rotate.c rotation.c check_error.c rotation_utils.c transfer_utils.c big_utils.c
+FT_PRINTF = ./printf/libftprintf.a
 
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(patsubst %.c, ${DIR_OBJ}%.o, ${SRCS})
 
-all: $(NAME)
+all: ft_printf $(NAME)
 
-makeprintf:
-	@make -C $(PRINTFDIR)
-	@cp $(PRINTFDIR)/$(PRINTFNAME) $(NAME)
+ft_printf: ${FT_PRINTF_DIR}
+	${MAKE} -C ./printf all
 
-$(NAME): makeprintf $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(PRINTFDIR) -lftprintf
+
+${DIR_OBJ}%.o: %.c push_swap.h Makefile
+	mkdir -p $(shell dirname $@)
+	$(CC) ${CFLAGS} -c $< -o $@
+
+
+$(NAME): $(OBJS) $(FT_PRINTF)
+	$(CC) $(OBJS) $(FT_PRINTF) -o $(NAME)
 
 clean:
-	@rm -f $(OBJS)
-	@cd $(PRINTFDIR) && make clean
+	${RM} ${DIR_OBJ}
+	${MAKE} -C ./printf clean
 
 fclean: clean
-	@rm -f $(NAME)
-	@cd $(PRINTFDIR) && make fclean
+	${RM} ${NAME}
+	${MAKE} -C ./printf fclean
 
-compil: 
-	$(CC) $(CFLAGS) -o pushswap_test $(SRCS) $(PRINTFDIR)/*.c $(LIBFTDIR)/*.c -I$(LIBFTDIR) -I$(PRINTFDIR)
 
-re: fclean all compil
 
-.PHONY: all clean fclean re compil
+re: fclean all
+
+.PHONY: all clean fclean re
 
