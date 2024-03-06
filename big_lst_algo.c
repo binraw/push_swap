@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/03/06 10:26:51 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:48:19 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,41 @@
 void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 {
 	int		count;
+    int pos;
 	t_list	*stack_from;
 
 	stack_from = ft_lstduplicate(*stack_b);
-	ft_lstsize(*stack_a);
-	while (index >= 0)
+	pos = ft_lstsize(*stack_a);
+    count = count_number_rota(stack_b, (*stack_a)->content);
+    if (index > count_mediane(*stack_a))
+    {
+        pos = pos - (ft_lstsize(*stack_a) - index + 1);
+    
+    if (pos < count)
+    {
+        while (pos > 0)
+        {
+            rrr_rotate(stack_a, stack_b);
+            pos--;
+        }
+    }
+    }
+  
+    else 
+    {
+    while (index >= 0)
 	{
 		rra_rotate(stack_a);
 		index--;
 	}
-	count = count_number_rota(stack_b, (*stack_a)->content);
+	
 	while (count > 0)
 	{
 		rrb_rotate(stack_b);
 		count--;
 	}
-		// printf("LISTE A:\n");
-		// print_liste(*stack_a);
-		// printf("LISTE B:\n");
-		// print_liste(*stack_b);
+    }
+
 	pb_push(stack_a, stack_b);
 	ft_lstclear(&stack_from, free);
 }
@@ -51,38 +67,32 @@ int	big_digit(t_list **stack_a, t_list **stack_b)
 		y = index_to_push(*stack_a, *stack_b);
 		if (y <= count_mediane(*stack_a))
 		{
-		// 	printf("LISTE A:\n");
-		// print_liste(*stack_a);
-		// printf("LISTE B:\n");
-		// print_liste(*stack_b);
+            printf("STACK_A\n");
+            print_liste(*stack_a);
+            printf("STACK_B\n");
+            print_liste(*stack_b);
 			transfer_num_ra(stack_a, stack_b, y);
 		}
 			
 		else
-	{
-		// printf("LISTE A:\n");
-		// print_liste(*stack_a);
-		// printf("LISTE B:\n");
-		// print_liste(*stack_b);
+	    {
+        // printf("STACK_A\n");
+        // print_liste(*stack_a);
+        // printf("STACK_B\n");
+        // print_liste(*stack_b);
 		transfer_num_rra(stack_a, stack_b, y);
-	}
+	    }
 			
 	}
-	// printf("LISTE A:\n");
-	// 	print_liste(*stack_a);
-	// 	printf("LISTE B:\n");
-	// 	print_liste(*stack_b);
 	sort_three_numbers(three_digit(*stack_a), stack_a);
+    //  print_liste(*stack_b);
 	while (ft_lstsize(*stack_b) > 0)
 	{
-		// printf("LISTE A:\n");
-		// print_liste(*stack_a);
-		// printf("LISTE B:\n");
-		// print_liste(*stack_b);
 		big_digit_to_a(stack_a, stack_b);
 	}
 		
 	orga_lst(stack_a);
+    // print_liste(*stack_a);
 	return (0);
 }
 
@@ -91,27 +101,41 @@ int	index_to_push(t_list *stack_a, t_list *stack_b)
 	int		i;
 	int		x;
 	int		count;
+    int     pos;
 	t_list	*tmp;
 
 	tmp = ft_lstduplicate(stack_a);
 	i = 0;
 	x = 0;
+    pos = ft_lstsize(stack_a);
 	count = 0;
 	while (i <= ft_lstsize(stack_a))
 	{
+        if (i > count_mediane(stack_a))
+        {
+            pos = pos - (ft_lstsize(stack_a) - i + 1);
+            if (count_number_rota(&stack_b, tmp->content) < count)
+                return (i);
+        }
+        if (count_number_rota(&stack_b, tmp->content) == i && i < count && i < count_mediane(stack_a))
+            return (i);
 		if (count_number_rota(&stack_b, tmp->content) < count || i == 0)
 		{
 			count = count_number_rota(&stack_b, tmp->content);
+            // si count_number_rota_a == count_number_rota et plus petit que les autres rota alors rr 
 			x = i;
 		}
 		if (count == 1)
 			break ;
 		tmp->content = tmp->next->content;
+        // ra_rotate_void(&tmp);
+        // tmp = tmp->next;
 		i++;
 	}
 	ft_lstclear(&tmp, free);
 	return (x);
 }
+
 
 void	ft_combi_clear(t_list **tmp, t_list **dupli_a)
 {

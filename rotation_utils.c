@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 13:03:45 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/28 14:03:06 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:48:12 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ void	ra_rotate(t_list **stack_a)
 	rotate(stack_a);
 	ft_printf("ra\n");
 }
+
+// void	ra_rotate_void(t_list **stack_a)
+// {
+// 	rotate(stack_a);
+	
+// }
 
 void	rb_rotate(t_list **stack_b)
 {

@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:40:49 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/02/28 14:13:48 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:46:40 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ void	transfer_num_ra(t_list **stack_a, t_list **stack_b, int index);
 int		condition_papush(t_list **tmp, t_list **dupli_a);
 int		condition_find(int nbr_push, t_list **stack_from);
 void	stack_init(t_list **stack_a, char *value);
+void	ra_rotate_void(t_list **stack_a);
+
 
 #endif
