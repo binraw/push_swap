@@ -6,7 +6,7 @@
 /*   By: rtruvelo <rtruvelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 15:28:31 by rtruvelo          #+#    #+#             */
-/*   Updated: 2024/03/06 10:21:40 by rtruvelo         ###   ########.fr       */
+/*   Updated: 2024/03/06 10:26:51 by rtruvelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	transfer_num_rra(t_list **stack_a, t_list **stack_b, int index)
 		rrb_rotate(stack_b);
 		count--;
 	}
-		printf("LISTE A:\n");
-		print_liste(*stack_a);
-		printf("LISTE B:\n");
-		print_liste(*stack_b);
+		// printf("LISTE A:\n");
+		// print_liste(*stack_a);
+		// printf("LISTE B:\n");
+		// print_liste(*stack_b);
 	pb_push(stack_a, stack_b);
 	ft_lstclear(&stack_from, free);
 }
